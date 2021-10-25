@@ -1,7 +1,7 @@
 extends Spatial
 
-const MOTOR_SPEED := 34
-const TAIL_SWIM_FACTOR := 0.2
+const MOTOR_SPEED := 50 #34 is decent for a 180 flip, but not strong enough for much height.
+const TAIL_SWIM_FACTOR := 0.25
 onready var HingeTail1 : HingeJoint = $HingeTail1
 onready var HingeTail2 : HingeJoint = $HingeTail2
 onready var HingeTail3 : HingeJoint = $HingeTail3
