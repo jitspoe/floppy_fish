@@ -1,0 +1,175 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fish.gd" type="Script" id=1]
+[ext_resource path="res://FishPhysics.tres" type="PhysicsMaterial" id=2]
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.0512449, 0.0115279, 0.0707922 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0.215686, 0.215686, 1 )
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.0512449, 0.0161126, 0.0921584 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.0394578, 0.012091, 0.0753741 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.0394578, 0.0089633, 0.0642712 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.0394578, 0.00774547, 0.0542703 )
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.0394578, 0.00359943, 0.0717857 )
+
+[node name="Fish" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="FishHead" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095557, 0, 0 )
+collision_layer = 2
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishHead"]
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="FishHead"]
+transform = Transform( 0.0513871, 0, 0, 0, 0.0117396, 0, 0, 0, 0.0692377, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="FishMid" type="RigidBody" parent="."]
+collision_layer = 2
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishMid"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="FishMid"]
+transform = Transform( 0.0513871, 0, 0, 0, 0.0154357, 0, 0, 0, 0.0908024, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="FishTail1" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0765282, 0, 0 )
+collision_layer = 2
+mass = 0.7
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishTail1"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="FishTail1"]
+transform = Transform( 0.0400522, 0, 0, 0, 0.0123879, 0, 0, 0, 0.0749664, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="FishTail2" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.146904, 0, 0 )
+collision_layer = 2
+mass = 0.6
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishTail2"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="FishTail2"]
+transform = Transform( 0.0386501, 0, 0, 0, 0.00889924, 0, 0, 0, 0.0650494, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="FishTail3" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220269, 0, 0 )
+collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishTail3"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="FishTail3"]
+transform = Transform( 0.0386501, 0, 0, 0, 0.00780022, 0, 0, 0, 0.0531879, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="FishTail4" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29214, 0, 0 )
+collision_layer = 2
+mass = 0.1
+physics_material_override = ExtResource( 2 )
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="CollisionShape" type="CollisionShape" parent="FishTail4"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="FishTail4"]
+transform = Transform( 0.0386501, 0, 0, 0, 0.00412496, 0, 0, 0, 0.0711668, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="HingeTail1" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0447523, 0, 0 )
+nodes/node_a = NodePath("../FishMid")
+nodes/node_b = NodePath("../FishTail1")
+angular_limit/enable = true
+angular_limit/upper = 20.0
+angular_limit/lower = -20.0
+
+[node name="HingeTail2" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111678, 0, 0 )
+nodes/node_a = NodePath("../FishTail1")
+nodes/node_b = NodePath("../FishTail2")
+angular_limit/enable = true
+angular_limit/upper = 20.0
+angular_limit/lower = -20.0
+
+[node name="HingeTail3" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.183212, 0, 0 )
+nodes/node_a = NodePath("../FishTail2")
+nodes/node_b = NodePath("../FishTail3")
+angular_limit/enable = true
+angular_limit/upper = 20.0
+angular_limit/lower = -20.0
+
+[node name="HingeTail4" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.257225, 0, 0 )
+nodes/node_a = NodePath("../FishTail3")
+nodes/node_b = NodePath("../FishTail4")
+angular_limit/enable = true
+angular_limit/upper = 10.0
+angular_limit/lower = -10.0
+
+[node name="HingeHead" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0457637, 0, 0 )
+nodes/node_a = NodePath("../FishHead")
+nodes/node_b = NodePath("../FishMid")
+angular_limit/enable = true
+angular_limit/upper = 10.0
+angular_limit/lower = -10.0
