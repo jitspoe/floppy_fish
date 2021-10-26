@@ -16,9 +16,44 @@ onready var FishTail4 : RigidBody = $FishTail4
 var PreviousAngleBetweenTails := 0.0
 var AverageLocation : Vector3
 
+var FishHeadTransform : Transform
+var FishMidTransform : Transform
+var FishTail1Transform : Transform
+var FishTail2Transform : Transform
+var FishTail3Transform : Transform
+var FishTail4Transform : Transform
+
 
 func _ready():
-	pass # Replace with function body.
+	FishHeadTransform = FishHead.global_transform
+	FishMidTransform = FishMid.global_transform
+	FishTail1Transform = FishTail1.global_transform
+	FishTail2Transform = FishTail2.global_transform
+	FishTail3Transform = FishTail3.global_transform
+	FishTail4Transform = FishTail4.global_transform
+
+
+func Restart():
+	FishHead.global_transform = FishHeadTransform
+	FishMid.global_transform = FishMidTransform
+	FishTail1.global_transform = FishTail1Transform
+	FishTail2.global_transform = FishTail2Transform
+	FishTail3.global_transform = FishTail3Transform
+	FishTail4.global_transform = FishTail4Transform
+
+	FishHead.linear_velocity = Vector3.ZERO
+	FishHead.angular_velocity = Vector3.ZERO
+	FishMid.linear_velocity = Vector3.ZERO
+	FishMid.angular_velocity = Vector3.ZERO
+	FishTail1.linear_velocity = Vector3.ZERO
+	FishTail1.angular_velocity = Vector3.ZERO
+	FishTail2.linear_velocity = Vector3.ZERO
+	FishTail2.angular_velocity = Vector3.ZERO
+	FishTail3.linear_velocity = Vector3.ZERO
+	FishTail3.angular_velocity = Vector3.ZERO
+	FishTail4.linear_velocity = Vector3.ZERO
+	FishTail4.angular_velocity = Vector3.ZERO
+
 
 func _physics_process(_delta : float):
 	var MotorEnabled := false
@@ -44,3 +79,4 @@ func _physics_process(_delta : float):
 	var AngleDiff := abs(AngleBetweenTails - PreviousAngleBetweenTails)
 	PreviousAngleBetweenTails = AngleBetweenTails
 	FishMid.apply_central_impulse(FishMid.global_transform.basis.x * AngleDiff * TAIL_SWIM_FACTOR)
+
