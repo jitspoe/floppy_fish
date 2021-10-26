@@ -21,8 +21,8 @@ float displace(vec3 v, float t) {
 
 void vertex() {
 	VERTEX.y = displace(VERTEX, TIME);
-	normal = -normalize( cross( vec3(1, displace(VERTEX + vec3(1, 0, 0), TIME) - VERTEX.y, 0), vec3(0, displace(VERTEX + vec3(0, 0, 1), TIME) - VERTEX.y, 1) ) );
-	normal = (WORLD_MATRIX * vec4(normal, 0)).xyz;
+	normal = -normalize( cross( vec3(0.5, displace(VERTEX + vec3(0.5, 0, 0), TIME) - VERTEX.y, 0), vec3(0, displace(VERTEX + vec3(0, 0, 0.5), TIME) - VERTEX.y, 0.5) ) );
+	normal = (MODELVIEW_MATRIX * vec4(normal, 0)).xyz;
 }
 /*
 void vertex() {

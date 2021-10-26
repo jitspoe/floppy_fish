@@ -1,6 +1,7 @@
 extends Spatial
 
 const MIN_TIME_BETWEEN_VO := 1.0
+const TIME_BETWEEN_FILLER_VO := 120.0
 onready var MainCamera : Camera = $Camera
 onready var Fish : Spatial = $Fish
 onready var SubtitleLabel : Label = $HUD/Subtitle
@@ -10,7 +11,7 @@ var GameTime := 0.0
 var Completed := false
 var TimeVOPlayed := {}
 var VOQueue := []
-var TimeSinceLastVO := 99999999.9
+var TimeSinceLastVO := 0.0
 var MusicPlaying := false
 var MusicVolume := 0.25
 var MusicFade := 1.0
@@ -18,6 +19,7 @@ const MUSIC_FADE_SPEED := 0.25
 var MusicStopTime := 0.0
 var CurrentTime := 0.0
 var VOPlaying := false
+var VOEnabled := true
 
 class VOQueueData:
 	var TimeToPlay := 0.0
@@ -62,6 +64,19 @@ func UpdateVO():
 			if (CurrentTime >= VOQueue[0].TimeToPlay):
 				PlayVONow(VOQueue[0].VOLine)
 				VOQueue.remove(0)
+	else:
+		if (TimeSinceLastVO > TIME_BETWEEN_FILLER_VO && CurrentTime > MusicStopTime):
+			PlayFillerVO()
+
+
+func PlayFillerVO():
+	var r := rand_range(0.0, 3.0)
+	if (r < 1.0):
+		QueueVO("indie_flop", 5.0, 5.0)
+	elif (r < 2.0):
+		QueueVO("keep_floundering", 5.0, 5.0)
+	elif (r < 3.0):
+		QueueVO("goop_loop_unintentional", 5.0, 5.0)
 
 
 func _physics_process(delta : float):
@@ -78,6 +93,7 @@ func Restart():
 	Fish.Restart()
 	GameTime = 0.0
 	Completed = false
+	TimeSinceLastVO = 0.0
 	VOQueue.clear()
 	TimeVOPlayed.clear()
 
@@ -100,6 +116,7 @@ func _on_EndTrigger_body_entered(body):
 		$SoundSplashEnd.global_transform.origin = body.global_transform.origin
 		$SoundSplashEnd.play()
 		QueueVO("buoy_did_it")
+		QueueVO("goop_loop_end_plug")
 		print("You win.  Time:", GameTime)
 		Completed = true
 
@@ -134,25 +151,25 @@ func PlayMusic():
 
 
 func QueueVO(VOLine : String, MusicLeadIn := 0.0, TimeBeforeSkip := 3.0):
-	if (!HasPlayedLine(VOLine)):
-		if (MusicLeadIn > 0.0 && !MusicPlaying):
-			PlayMusic()
-		var TimeToPlay := MusicLeadIn + CurrentTime
-		var TimeToSkip := TimeToPlay + TimeBeforeSkip
-		for ExistingQueue in VOQueue:
-			if ExistingQueue.VOLine == VOLine:
-				ExistingQueue.TimeToSkip = TimeToSkip
-				return
-		var VQD := VOQueueData.new()
-		VQD.VOLine = VOLine
-		VQD.TimeToPlay = TimeToPlay
-		VQD.TimeToSkip = TimeToSkip
-		VOQueue.append(VQD)
-		MusicStopTime = max(MusicStopTime, CurrentTime + MusicLeadIn)
+	if (VOEnabled):
+		if (!HasPlayedLine(VOLine)):
+			if (MusicLeadIn > 0.0 && !MusicPlaying):
+				PlayMusic()
+			var TimeToPlay := MusicLeadIn + CurrentTime
+			var TimeToSkip := TimeToPlay + TimeBeforeSkip
+			for ExistingQueue in VOQueue:
+				if ExistingQueue.VOLine == VOLine:
+					ExistingQueue.TimeToSkip = TimeToSkip
+					return
+			var VQD := VOQueueData.new()
+			VQD.VOLine = VOLine
+			VQD.TimeToPlay = TimeToPlay
+			VQD.TimeToSkip = TimeToSkip
+			VOQueue.append(VQD)
+			MusicStopTime = max(MusicStopTime, CurrentTime + MusicLeadIn)
 
 
 func _on_StartTrigger_body_entered(_body):
-	return #TODO: Reenable VO.
 	QueueVO("start_controls1", 5.0, 5.0)
 	QueueVO("start_controls2", 1.0, 5.0 + 13.59)
 	QueueVO("start_controls3", 1.0, 5.0 + 13.59 + 11.3)
@@ -162,3 +179,7 @@ func _on_StartTrigger_body_entered(_body):
 
 func _on_VOPlayer_finished():
 	VOPlaying = false
+
+
+func _on_HardTrigger_body_entered(_body):
+	QueueVO("multiple_ways", 5.0, 5.0)

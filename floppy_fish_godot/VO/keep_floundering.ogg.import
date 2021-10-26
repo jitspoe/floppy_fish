@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/keep_floundering.ogg-a443fb6220ac58e401ace458ed796fba.oggstr"
+
+[deps]
+
+source_file="res://VO/keep_floundering.ogg"
+dest_files=[ "res://.import/keep_floundering.ogg-a443fb6220ac58e401ace458ed796fba.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

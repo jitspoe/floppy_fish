@@ -5,3 +5,9 @@ start_controls2,"In this game, designed to capture the Foddian spirit, you simpl
 start_controls3,"You are, quite literally, a fish out of water.  I was planning to have the the movement driven entirely by the physics of the fish contacting the world, but, believe it or not, that was more uncontrollable than what you’re playing now.  You’d flip and flop upward with no practical way to progress forward."
 start_controls4,"Then I realized that, while not as effective as in water, a tail flapping back and forth would create some sort of forward momentum due to the air being pushed."
 start_controls5,"I’m not sure how physically accurate this is, but it does seem slightly more plausible than a man lifting his entire body weight and that of a cauldron up using just a hammer."
+goop_loop_end_plug,"If you enjoy games with weird physics challenges like this, you should also check out Goop Loop!"
+goop_loop_unintentional,"In a previous game jam, I inadvertently made a Foddian game called Goop Loop.  The theme was “stuck in a loop”, and I made a goop that literally stuck to a loop.  I didn’t intend for it to be so difficult, but the physics just ended up that way.  I guess difficult physics games are becoming my legacy."
+goop_loop_unintentional2,It’s fascinating to me how a 
+multiple_ways,"The great thing about physics based-games like this is there are often multiple ways to tackle an obstacle.  Here, there are at least 3 different routes.  Of course, none of them are easy, but, as a fish, you should be able to scale this!"
+indie_flop,"There are so many games out there, and very few of them are actually widely known about.  Statistically speaking, if I were to attempt to extend this game as a commercial product, it would likely… flop."
+keep_floundering,"Keep floundering!  You’re bound to make it somewhere eventually.  Maybe not where you wanted to go, but somewhere."

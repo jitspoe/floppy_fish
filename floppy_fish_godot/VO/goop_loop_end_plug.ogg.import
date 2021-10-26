@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/goop_loop_end_plug.ogg-cf594c277f97a8aeaea51b0cd7bd0b4d.oggstr"
+
+[deps]
+
+source_file="res://VO/goop_loop_end_plug.ogg"
+dest_files=[ "res://.import/goop_loop_end_plug.ogg-cf594c277f97a8aeaea51b0cd7bd0b4d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

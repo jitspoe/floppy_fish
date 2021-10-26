@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.18/win64" 1635272698
+<REAPER_PROJECT 0.1 "6.18/win64" 1635280938
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -14,8 +14,8 @@
   TIMEMODE 1 5 -1 30 0 0 -1
   VIDEO_CONFIG 0 0 256
   PANMODE 3
-  CURSOR 39.17013965814104
-  ZOOM 198.12061739 7566 0
+  CURSOR 81.70930908065189
+  ZOOM 25.47655226240266 956 0
   VZOOMEX 6 0
   USE_REC_CFG 0
   RECMODE 1
@@ -86,7 +86,7 @@
     DEFSHAPE 1 -1 -1
   >
   MARKER 1 39.5 fwop_music 13 0 1 R {15FE3BE5-55AA-486C-A7E2-B4E76198ED9C}
-  MARKER 1 75.5 "" 13 0 1 R
+  MARKER 1 91.5 "" 13 0 1 R
   <PROJBAY
   >
   <TRACK {FA096D9F-D2A8-4AC9-B8B8-13D33BAC4A9C}
@@ -102,7 +102,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 -1 -1 -1
     FREEMODE 0
-    SEL 0
+    SEL 1
     REC 1 4096 1 7 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0
@@ -466,7 +466,117 @@
       >
     >
     <ITEM
-      POSITION 94.5
+      POSITION 40.375
+      SNAPOFFS 0
+      LENGTH 50.69033333339635
+      LOOP 0
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0 0
+      SEL 1
+      IGUID {FB0F0E25-22F9-4DF3-996B-475412F1CC5F}
+      IID 17
+      NAME "piano untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0.875 1.75
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {E7BF3841-9A7E-4A83-97AA-25128DEAEB61}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {EDED4B14-5097-41AA-9F51-8B4F3071EF36}
+        E 2874 90 4f 3f
+        E 738 80 4f 00
+        E 213 90 4a 47
+        E 3494 80 4a 00
+        E 1312 90 4d 49
+        E 881 80 4d 00
+        E 77 90 4a 55
+        E 4404 80 4a 00
+        E 401 90 4c 3c
+        E 908 80 4c 00
+        E 46 90 4a 5c
+        E 2787 80 4a 00
+        E 1098 90 45 38
+        E 885 90 47 3b
+        E 62 80 45 00
+        E 905 80 47 00
+        E 41 90 48 55
+        E 3723 80 48 00
+        E 1047 90 4f 40
+        E 1602 80 4f 00
+        E 3237 90 4f 2a
+        E 926 90 51 43
+        E 13 80 4f 00
+        E 825 80 51 00
+        E 166 90 4c 53
+        E 559 80 4c 00
+        E 395 90 4d 39
+        E 1726 80 4d 00
+        E 182 90 4d 32
+        E 1814 80 4d 00
+        E 119 90 4f 4b
+        E 474 90 4d 20
+        E 96 80 4f 00
+        E 269 80 4d 00
+        E 99 90 4c 55
+        E 1925 80 4c 00
+        E 981 90 4c 41
+        E 847 80 4c 00
+        E 29 90 4a 43
+        E 1036 90 48 46
+        E 23 80 4a 00
+        E 427 80 48 00
+        E 41 90 4a 4c
+        E 472 90 43 35
+        E 1887 80 43 00
+        E 5529 80 4a 00
+        E 1207 90 4a 4c
+        E 2767 80 4a 00
+        E 128 90 43 48
+        E 5512 80 43 00
+        E 195 90 45 4c
+        E 2693 80 45 00
+        E 245 90 45 29
+        E 2416 80 45 00
+        E 463 90 3e 42
+        E 2116 80 3e 00
+        e 14121 90 51 36
+        E 822 90 4f 35
+        e 245 80 51 00
+        E 1839 90 4d 48
+        E 267 80 4f 00
+        E 524 80 4d 00
+        E 98 90 4f 44
+        E 2866 80 4f 00
+        E 58 90 4a 38
+        E 2812 80 4a 00
+        E 157 90 4c 49
+        E 2274 80 4c 00
+        E 1243 b0 40 7f
+        E 8 b0 40 00
+        E 83 b0 40 7f
+        E 121 b0 40 00
+        E 276 b0 40 7f
+        E 9 b0 40 00
+        E 1845 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {70A1D44B-FAA8-4680-9F4A-AC3AC910A77D}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 27
+        VELLANE 64 123 0
+        CFGEDITVIEW 22861.036318 0.016319 31 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 0 1 0.25 140 230 1836 1064 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 165
       SNAPOFFS 0
       LENGTH 33
       LOOP 0
@@ -493,7 +603,7 @@
         E 921 90 4a 39
         E 29 80 4f 00
         E 827 80 4a 00
-        E 2933 90 4d 52
+        E 1951 90 4d 52
         E 1870 80 4d 00
         E 99 90 4d 3f
         E 909 90 4a 38
@@ -503,15 +613,15 @@
         E 3946 80 48 00
         E 903 90 45 33
         E 1353 80 45 00
-        E 555 90 45 40
-        E 945 90 47 36
-        E 133 80 45 00
-        E 837 90 48 3e
-        E 288 80 47 00
+        e 1537 90 45 40
+        e 945 90 47 36
+        e 133 80 45 00
+        e 837 90 48 3e
+        e 288 80 47 00
         e 653 90 45 3e
-        E 833 80 48 00
+        e 833 80 48 00
         e 2027 80 45 00
-        E 7701 90 4f 35
+        E 6719 90 4f 35
         E 707 80 4f 00
         E 234 90 51 46
         E 3446 80 51 00
@@ -533,18 +643,18 @@
         E 881 90 47 31
         E 65 80 45 00
         E 1146 80 47 00
-        E 749 b0 7b 00
+        E 1731 b0 7b 00
         CCINTERP 32
         CHASE_CC_TAKEOFFS 1
         GUID {0567DCF3-2807-43FD-BEFF-F176EB0B1C08}
         IGNTEMPO 0 120 4 4
         SRCCOLOR 22
         VELLANE 64 123 0
-        CFGEDITVIEW -6134.219806 0.005657 42 12 0 -1 0 0 0 0.5
+        CFGEDITVIEW -6063.585476 0.005657 42 12 0 -1 0 0 0 0.5
         KEYSNAP 0
         TRACKSEL 0
         EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
-        CFGEDIT 1 1 0 1 0 0 1 1 1 0 1 0.25 231 309 1943 1159 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+        CFGEDIT 1 1 0 1 0 0 1 1 1 0 1 0.25 -13 299 1699 1149 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
       >
     >
   >
@@ -561,7 +671,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 -1 -1 -1
     FREEMODE 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0
@@ -581,7 +691,7 @@
       FADEIN 1 0 0 1 0 0
       FADEOUT 1 0 0 1 0 0
       MUTE 0 0
-      SEL 1
+      SEL 0
       IGUID {B3D6D766-4C91-44DF-BC68-F0A3912128A1}
       IID 3
       NAME "01-piano-Recorded MIDI"

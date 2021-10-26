@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/indie_flop.ogg-fbd28b3d2212bb1d79bb459cd0ea4a00.oggstr"
+
+[deps]
+
+source_file="res://VO/indie_flop.ogg"
+dest_files=[ "res://.import/indie_flop.ogg-fbd28b3d2212bb1d79bb459cd0ea4a00.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
