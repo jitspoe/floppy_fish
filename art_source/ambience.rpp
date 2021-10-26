@@ -1,0 +1,386 @@
+<REAPER_PROJECT 0.1 "6.18/win64" 1635252811
+  RIPPLE 0
+  GROUPOVERRIDE 0 0 0
+  AUTOXFADE 1
+  ENVATTACH 1
+  POOLEDENVATTACH 0
+  MIXERUIFLAGS 11 48
+  PEAKGAIN 3.4522712143931
+  FEEDBACK 0
+  PANLAW 1
+  PROJOFFS 0 0 0
+  MAXPROJLEN 0 600
+  GRID 3455 8 1 8 1 0 0 0
+  TIMEMODE 1 5 -1 30 0 0 -1
+  VIDEO_CONFIG 0 0 256
+  PANMODE 3
+  CURSOR 1047.1508319890072
+  ZOOM 7.96819972187419 7743 0
+  VZOOMEX 6 0
+  USE_REC_CFG 0
+  RECMODE 1
+  SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
+  LOOP 0
+  LOOPGRAN 0 4
+  RECORD_PATH "" ""
+  <RECORD_CFG
+    ZXZhdxAAAA==
+  >
+  <APPLYFX_CFG
+  >
+  RENDER_FILE "E:\Projects\floppy_fish\floppy_fish_godot\Sound"
+  RENDER_PATTERN $region
+  RENDER_FMT 0 2 0
+  RENDER_1X 0
+  RENDER_RANGE 5 0 0 18 1000
+  RENDER_RESAMPLE 9 0 1
+  RENDER_ADDTOPROJ 0
+  RENDER_STEMS 8
+  RENDER_DITHER 0
+  TIMELOCKMODE 0
+  TEMPOENVLOCKMODE 1
+  ITEMMIX 0
+  DEFPITCHMODE 589824 0
+  TAKELANE 1
+  SAMPLERATE 48000 1 0
+  <RENDER_CFG
+    dmdnbwAAAD8AgAAAAIAAAAAgAAAAAAEAAA==
+  >
+  LOCK 1
+  <METRONOME 6 2
+    VOL 0.25 0.125
+    FREQ 800 1600 1
+    BEATLEN 4
+    SAMPLES "" ""
+    PATTERN 2863311530 2863311529
+  >
+  GLOBAL_AUTO -1
+  TEMPO 120 4 4
+  PLAYRATE 1 0 0.25 4
+  SELECTION 1072 1010
+  SELECTION2 1072 1010
+  MASTERAUTOMODE 0
+  MASTERTRACKHEIGHT 0 0
+  MASTERPEAKCOL 16576
+  MASTERMUTESOLO 0
+  MASTERTRACKVIEW 0 0.6667 0.5 0.5 -1 -1 -1 0 0 0 -1 -1 0
+  MASTERHWOUT 0 0 1 0 0 0 0 -1
+  MASTER_NCH 2 2
+  MASTER_VOLUME 1 0 -1 -1 1
+  MASTER_FX 1
+  MASTER_SEL 0
+  <MASTERPLAYSPEEDENV
+    EGUID {9E7AFF2B-9934-49D2-AC0F-5762C419F16A}
+    ACT 0 -1
+    VIS 0 1 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 0 -1 -1
+  >
+  <TEMPOENVEX
+    EGUID {88FD0931-B946-4CDF-B2D4-A7A0678E46E6}
+    ACT 1 -1
+    VIS 1 0 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 1 -1 -1
+  >
+  MARKER 1 992 docks_ambience 13 0 1 R {949D6409-4FD0-4A2D-9227-150628D9FA45}
+  MARKER 1 1079.7339149542579 "" 13 0 1 R
+  <PROJBAY
+  >
+  <TRACK {030547A4-C360-4107-AAC7-A9AD1DC7FCBF}
+    NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 1.02027317611641 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 -1 -1 -1
+    FREEMODE 0
+    SEL 0
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {030547A4-C360-4107-AAC7-A9AD1DC7FCBF}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 1.14576666976791
+      SNAPOFFS 0
+      LENGTH 92.51758472561222
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {1FA00E2E-C5D9-44AD-95C8-4E716F19F2D1}
+      IID 1
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {2F9760A6-3371-49A9-B7BF-229381AF3CC7}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 93.66335139538013
+      SNAPOFFS 0
+      LENGTH 11.30506527129091
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {714CD0D0-C0D9-423A-B69E-646FCF347A9E}
+      IID 2
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 92.51758472561222
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {EA487428-2C3C-4928-9E08-1ED32E677008}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 179.3377311295406
+      SNAPOFFS 0
+      LENGTH 147.12437303709032
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {E0BE0D5C-9DA6-480E-8129-16A315EF6D73}
+      IID 4
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 178.19196445977269
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {4262EDF8-8A27-47A6-8D72-4442A32768ED}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 347.27426629380079
+      SNAPOFFS 0
+      LENGTH 284.35150037596713
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {A86A69AB-2CA8-4E7E-9EE8-DBA0FE308350}
+      IID 7
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 346.12849962403288
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {32496DC1-DB25-44B2-8286-E20C89763555}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 992
+      SNAPOFFS 0
+      LENGTH 37.63539950861166
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1.1 0.01 4.569105 1 1 0
+      MUTE 0 0
+      SEL 0
+      IGUID {24CF793B-8A69-4B5D-A20D-404530FC1FB0}
+      IID 5
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 140.55656495116102
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {E727C74B-390A-49F8-927C-F1039D3EB5BE}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 1025.066294332144
+      SNAPOFFS 0
+      LENGTH 20.81216212716987
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1.1 0.01 4.569105 1 1 0
+      FADEOUT 1.1 0.01 2.878456 1 1 0
+      MUTE 0 0
+      SEL 0
+      IGUID {83B1D4CC-DC1B-47B0-A618-C87F230856BE}
+      IID 6
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 325.31633749686301
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {52BF9FE6-D986-470A-92D9-DDF35EEA64BA}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+    <ITEM
+      POSITION 1043
+      SNAPOFFS 0
+      LENGTH 36.7339149542579
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1.1 0.01 2.878456 1 1 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {F644C095-750E-4E5D-A8AF-F44BE3ACE6D3}
+      IID 3
+      NAME 471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 103.82264999690314
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {F8C26B72-7C20-4043-838D-A54E83BA02C3}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\471592__ralph-whitehead__dockyard-workers-unloading-fishing-trawler.wav"
+      >
+    >
+  >
+  <TRACK {9801F1B9-4510-4A52-920B-97CA45737D24}
+    NAME 581487__davidgtr1__ocean-waves-sounds-of-the-foam
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.34483987755952 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 -1 -1 -1
+    FREEMODE 0
+    SEL 1
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {9801F1B9-4510-4A52-920B-97CA45737D24}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 992
+      SNAPOFFS 0
+      LENGTH 28.24030688753942
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1.1 0.447619 2.69762 1 1 0
+      MUTE 0 0
+      SEL 0
+      IGUID {C4FF3D33-6C5B-4DC6-8AAA-E862E8EC989A}
+      IID 11
+      NAME 581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav
+      VOLPAN 0.274194 0 1 -1
+      SOFFS 6.68755882438666
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {8DAD0253-A8CA-4CAB-A44F-07D361711486}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav"
+      >
+    >
+    <ITEM
+      POSITION 1017.5426873393201
+      SNAPOFFS 0
+      LENGTH 34.42786571192607
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1.1 0.138107 2.69762 1 1 0
+      FADEOUT 1.1 0.447619 3.236104 1 1 0
+      MUTE 0 0
+      SEL 0
+      IGUID {5B12840B-D342-420A-9A17-7981FC69F73E}
+      IID 9
+      NAME 581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav
+      VOLPAN 0.274194 0 1 -1
+      SOFFS 0.5
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {352EDF8C-BDC8-4269-BC5E-74059212A7B8}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav"
+      >
+    >
+    <ITEM
+      POSITION 1048.7344488784711
+      SNAPOFFS 0
+      LENGTH 28.37841465919018
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1.1 0.138107 3.236104 1 1 0
+      FADEOUT 1.1 1.340155 2.90041 1 1 0
+      MUTE 0 0
+      SEL 0
+      IGUID {78960EB8-807A-46BB-80FD-4CAA090CAB5E}
+      IID 10
+      NAME 581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav
+      VOLPAN 0.274194 0 1 -1
+      SOFFS 5.06081664165572
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {866E8AC9-22EC-4949-87A0-309F71348C92}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav"
+      >
+    >
+    <ITEM
+      POSITION 1074.2124532464297
+      SNAPOFFS 0
+      LENGTH 5.52078101482471
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1.1 0.138107 2.90041 1 1 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0 0
+      SEL 0
+      IGUID {EDA0B1B3-3F0A-41D4-B63B-203BDD87D8C4}
+      IID 8
+      NAME 581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav
+      VOLPAN 0.274194 0 1 -1
+      SOFFS 1.16677780956184
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {C3CE7F19-AC9A-4347-A29B-2A40A838AB04}
+      <SOURCE WAVE
+        FILE "E:\Downloads\Sound samples\cc0\581487__davidgtr1__ocean-waves-sounds-of-the-foam.wav"
+      >
+    >
+  >
+  <EXTENSIONS
+  >
+>

@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://UI/floppy_fish_localization.en.translation" ]
+
+source_file="res://UI/floppy_fish_localization.csv"
+dest_files=[ "res://UI/floppy_fish_localization.en.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
