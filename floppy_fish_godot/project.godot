@@ -55,6 +55,7 @@ restart={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Fish"
 3d_physics/layer_3="Trigger"
+3d_physics/layer_4="FishMain"
 
 [locale]
 

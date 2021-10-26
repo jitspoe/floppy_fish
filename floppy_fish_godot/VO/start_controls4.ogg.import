@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/start_controls4.ogg-352435d2f601c7bae53e9738e252e6f5.oggstr"
+
+[deps]
+
+source_file="res://VO/start_controls4.ogg"
+dest_files=[ "res://.import/start_controls4.ogg-352435d2f601c7bae53e9738e252e6f5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

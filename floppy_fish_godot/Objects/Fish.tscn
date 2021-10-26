@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Objects/Fish.gd" type="Script" id=1]
 [ext_resource path="res://Objects/FishPhysics.tres" type="PhysicsMaterial" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Objects/fish_mesh_tail1.glb" type="PackedScene" id=6]
 [ext_resource path="res://Objects/fish_mesh_tail3.glb" type="PackedScene" id=7]
 [ext_resource path="res://Objects/fish_mesh_head.glb" type="PackedScene" id=8]
-[ext_resource path="res://Objects/FishMaterial.tres" type="Material" id=9]
 [ext_resource path="res://Objects/FishPart.gd" type="Script" id=10]
 
 [sub_resource type="BoxShape" id=1]
@@ -67,14 +66,11 @@ material/0 = SubResource( 3 )
 [node name="fish_mesh_head" parent="FishHead" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.139044, 0, 0 )
 
-[node name="Head" parent="FishHead/fish_mesh_head" index="0"]
-material/0 = ExtResource( 9 )
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FishHead"]
 stream = SubResource( 4 )
 
 [node name="FishMid" type="RigidBody" parent="."]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 5
 physics_material_override = ExtResource( 2 )
 can_sleep = false
@@ -93,9 +89,6 @@ material/0 = SubResource( 3 )
 
 [node name="fish_mesh_mid" parent="FishMid" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.044125, 0, 0 )
-
-[node name="SegmentMid" parent="FishMid/fish_mesh_mid" index="0"]
-material/0 = ExtResource( 9 )
 
 [node name="FishTail1" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0765282, 0, 0 )
@@ -123,9 +116,6 @@ material/0 = SubResource( 3 )
 [node name="fish_mesh_tail1" parent="FishTail1" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0388512, 0, 0 )
 
-[node name="Segment1" parent="FishTail1/fish_mesh_tail1" index="0"]
-material/0 = ExtResource( 9 )
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FishTail1"]
 stream = SubResource( 4 )
 
@@ -152,9 +142,6 @@ material/0 = SubResource( 3 )
 [node name="fish_mesh_tail2" parent="FishTail2" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.109718, 0, 0 )
 
-[node name="Tail2" parent="FishTail2/fish_mesh_tail2" index="0"]
-material/0 = ExtResource( 9 )
-
 [node name="FishTail3" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220269, 0, 0 )
 collision_layer = 2
@@ -180,9 +167,6 @@ material/0 = SubResource( 3 )
 
 [node name="fish_mesh_tail3" parent="FishTail3" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.181894, 0, 0 )
-
-[node name="Tail3" parent="FishTail3/fish_mesh_tail3" index="0"]
-material/0 = ExtResource( 9 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FishTail3"]
 stream = SubResource( 4 )
@@ -213,9 +197,6 @@ material/0 = SubResource( 3 )
 
 [node name="fish_mesh_tail4" parent="FishTail4" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.253742, 0, 0 )
-
-[node name="Tail4" parent="FishTail4/fish_mesh_tail4" index="0"]
-material/0 = ExtResource( 9 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FishTail4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215612, 0, 0 )
@@ -262,10 +243,14 @@ angular_limit/enable = true
 angular_limit/upper = 10.0
 angular_limit/lower = -10.0
 
+[node name="GaspTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="FishHead" to="FishHead" method="_on_body_entered"]
 [connection signal="body_entered" from="FishTail1" to="FishTail1" method="_on_body_entered"]
 [connection signal="body_entered" from="FishTail3" to="FishTail3" method="_on_body_entered"]
 [connection signal="body_entered" from="FishTail4" to="FishTail4" method="_on_FishTail4_body_entered"]
+[connection signal="timeout" from="GaspTimer" to="." method="_on_GaspTimer_timeout"]
 
 [editable path="FishHead/fish_mesh_head"]
 [editable path="FishMid/fish_mesh_mid"]

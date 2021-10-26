@@ -5,14 +5,22 @@ onready var MainCamera : Camera = $Camera
 onready var Fish : Spatial = $Fish
 onready var SubtitleLabel : Label = $HUD/Subtitle
 onready var VOPlayer : AudioStreamPlayer = $VOPlayer
+onready var MusicPlayer : AudioStreamPlayer = $MusicPlayer
 var GameTime := 0.0
 var Completed := false
-var TimeSinceVOPlayed := {}
+var TimeVOPlayed := {}
 var VOQueue := []
 var TimeSinceLastVO := 99999999.9
+var MusicPlaying := false
+var MusicVolume := 0.25
+var MusicFade := 1.0
+const MUSIC_FADE_SPEED := 0.25
+var MusicStopTime := 0.0
+var CurrentTime := 0.0
+var VOPlaying := false
 
 class VOQueueData:
-	var TimeQueued := 0.0
+	var TimeToPlay := 0.0
 	var TimeToSkip := 0.0
 	var VOLine : String
 
@@ -20,17 +28,40 @@ func _ready():
 	$EndScreen.visible = false
 	SubtitleLabel.visible = false
 	OS.window_maximized = true
+	MusicPlayer.volume_db = linear2db(MusicVolume)
 
 
 func _process(delta : float):
+	CurrentTime = OS.get_ticks_msec() / 1000.0
 	TimeSinceLastVO += delta
-	if (VOPlayer.playing):
+	if (VOPlaying):
 		TimeSinceLastVO = 0.0
 	if (TimeSinceLastVO > 0.0):
 		if (TimeSinceLastVO > 1.0):
 			SubtitleLabel.visible = false
 		else:
 			SubtitleLabel.modulate.a = (1.0 - TimeSinceLastVO)
+	UpdateVO()
+	if (MusicPlaying):
+		if (TimeSinceLastVO > MIN_TIME_BETWEEN_VO && CurrentTime > MusicStopTime):
+			MusicFade -= delta * MUSIC_FADE_SPEED
+		else:
+			MusicFade += delta * MUSIC_FADE_SPEED
+		MusicFade = min(1.0, MusicFade)
+		MusicPlayer.volume_db = linear2db(MusicFade * MusicVolume)
+		if (MusicFade <= 0.0):
+			MusicPlayer.stop()
+			MusicPlaying = false
+		else:
+			MusicPlaying = true
+
+
+func UpdateVO():
+	if (VOQueue.size()):
+		if (TimeSinceLastVO > MIN_TIME_BETWEEN_VO):
+			if (CurrentTime >= VOQueue[0].TimeToPlay):
+				PlayVONow(VOQueue[0].VOLine)
+				VOQueue.remove(0)
 
 
 func _physics_process(delta : float):
@@ -47,6 +78,8 @@ func Restart():
 	Fish.Restart()
 	GameTime = 0.0
 	Completed = false
+	VOQueue.clear()
+	TimeVOPlayed.clear()
 
 
 func TimeFormat(Time : float):
@@ -75,15 +108,57 @@ func _on_RestartButton_pressed():
 	call_deferred("Restart")
 
 
-func PlayVO(VOLine : String):
-	SubtitleLabel.visible = true
-	SubtitleLabel.modulate.a = 1.0
-	SubtitleLabel.text = tr(VOLine)
-	VOPlayer.stream = load("res://VO/%s.ogg" % VOLine)
-	VOPlayer.play()
+func HasPlayedLine(VOLine : String) -> bool:
+	return TimeVOPlayed.has(VOLine)
 
 
-func QueueVO(VOLine : String, TimeBeforeSkip := 3.0):
-	
-	PlayVO(VOLine)
-	pass
+func AddPlayedLine(VOLine : String):
+	TimeVOPlayed[VOLine] = OS.get_ticks_msec()
+
+
+func PlayVONow(VOLine : String):
+	if (!HasPlayedLine(VOLine)):
+		SubtitleLabel.visible = true
+		SubtitleLabel.modulate.a = 1.0
+		SubtitleLabel.text = tr(VOLine)
+		VOPlayer.stream = load("res://VO/%s.ogg" % VOLine)
+		VOPlayer.play()
+		VOPlaying = true
+		AddPlayedLine(VOLine)
+
+
+func PlayMusic():
+	if (!MusicPlaying):
+		MusicPlayer.play(0.0)
+		MusicPlaying = true
+
+
+func QueueVO(VOLine : String, MusicLeadIn := 0.0, TimeBeforeSkip := 3.0):
+	if (!HasPlayedLine(VOLine)):
+		if (MusicLeadIn > 0.0 && !MusicPlaying):
+			PlayMusic()
+		var TimeToPlay := MusicLeadIn + CurrentTime
+		var TimeToSkip := TimeToPlay + TimeBeforeSkip
+		for ExistingQueue in VOQueue:
+			if ExistingQueue.VOLine == VOLine:
+				ExistingQueue.TimeToSkip = TimeToSkip
+				return
+		var VQD := VOQueueData.new()
+		VQD.VOLine = VOLine
+		VQD.TimeToPlay = TimeToPlay
+		VQD.TimeToSkip = TimeToSkip
+		VOQueue.append(VQD)
+		MusicStopTime = max(MusicStopTime, CurrentTime + MusicLeadIn)
+
+
+func _on_StartTrigger_body_entered(_body):
+	return #TODO: Reenable VO.
+	QueueVO("start_controls1", 5.0, 5.0)
+	QueueVO("start_controls2", 1.0, 5.0 + 13.59)
+	QueueVO("start_controls3", 1.0, 5.0 + 13.59 + 11.3)
+	QueueVO("start_controls4", 1.0, 5.0 + 13.59 + 11.3 + 16.47)
+	QueueVO("start_controls5", 1.0, 5.0 + 13.59 + 11.3 + 16.47 + 8)
+
+
+func _on_VOPlayer_finished():
+	VOPlaying = false

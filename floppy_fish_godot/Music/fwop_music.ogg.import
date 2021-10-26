@@ -11,5 +11,5 @@ dest_files=[ "res://.import/fwop_music.ogg-2dd855d1235d3c261b6eb6ff2a7ce49a.oggs
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

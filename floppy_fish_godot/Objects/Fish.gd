@@ -12,6 +12,7 @@ onready var FishTail1 : RigidBody = $FishTail1
 onready var FishTail2 : RigidBody = $FishTail2
 onready var FishTail3 : RigidBody = $FishTail3
 onready var FishTail4 : RigidBody = $FishTail4
+onready var FishHeadAnim : AnimationPlayer = $FishHead/fish_mesh_head/AnimationPlayer
 
 var PreviousAngleBetweenTails := 0.0
 var AverageLocation : Vector3
@@ -22,6 +23,7 @@ var FishTail1Transform : Transform
 var FishTail2Transform : Transform
 var FishTail3Transform : Transform
 var FishTail4Transform : Transform
+#var GaspTimer : Timer
 
 
 func _ready():
@@ -31,7 +33,14 @@ func _ready():
 	FishTail2Transform = FishTail2.global_transform
 	FishTail3Transform = FishTail3.global_transform
 	FishTail4Transform = FishTail4.global_transform
+#	GaspTimer = Timer.new()
+#	GaspTimer.connect("timeout", self, "Gasp")
+#	GaspTimer.start(1.0)
+#	add_child(GaspTimer)
 
+func Gasp():
+	FishHeadAnim.play("gasp")
+	$GaspTimer.start(rand_range(1.0, 3.0))
 
 func Restart():
 	FishHead.global_transform = FishHeadTransform
@@ -80,3 +89,7 @@ func _physics_process(_delta : float):
 	PreviousAngleBetweenTails = AngleBetweenTails
 	FishMid.apply_central_impulse(FishMid.global_transform.basis.x * AngleDiff * TAIL_SWIM_FACTOR)
 
+
+
+func _on_GaspTimer_timeout():
+	Gasp()

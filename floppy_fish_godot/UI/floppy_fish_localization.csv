@@ -1,2 +1,7 @@
 key,en
 buoy_did_it,"Oh, buoy!  You did it!"
+start_controls1,"Sometimes games with the simplest control schemes are the most difficult.  For example, in Getting Over It with Bennett Foddy, the only thing you do is move the mouse, but the complex interactions with physics allow for very in-depth movement mechanics. "
+start_controls2,"In this game, designed to capture the Foddian spirit, you simply have 2 controls: flop left and flop right.  You can use arrow keys, A and D, or the mouse buttons to flip and flop."
+start_controls3,"You are, quite literally, a fish out of water.  I was planning to have the the movement driven entirely by the physics of the fish contacting the world, but, believe it or not, that was more uncontrollable than what you’re playing now.  You’d flip and flop upward with no practical way to progress forward."
+start_controls4,"Then I realized that, while not as effective as in water, a tail flapping back and forth would create some sort of forward momentum due to the air being pushed."
+start_controls5,"I’m not sure how physically accurate this is, but it does seem slightly more plausible than a man lifting his entire body weight and that of a cauldron up using just a hammer."
