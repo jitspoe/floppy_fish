@@ -14,6 +14,11 @@ config/name="Floppy Fish"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1700
+window/size/height=956
+
 [input]
 
 flop_left={
@@ -42,4 +47,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
