@@ -65,7 +65,7 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 0.879698, 0.475532, 0, -0.475532, 0.879698, 18.033, 3.1294, 1.36595 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3294, 2.0186, 1.73472e-18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50743, 2.0186, 1.73472e-18 )
 
 [node name="Cube1m6" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64498, 0.59692, 0 )
