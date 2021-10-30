@@ -95,19 +95,26 @@ texture = ExtResource( 11 )
 [node name="CenterContainer" type="CenterContainer" parent="MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GridContainer" type="GridContainer" parent="MainMenu/CenterContainer"]
-margin_left = 633.0
-margin_top = 291.0
-margin_right = 966.0
-margin_bottom = 609.0
+margin_left = 793.0
+margin_top = 296.0
+margin_right = 1126.0
+margin_bottom = 660.0
+
+[node name="Fullscreen" type="CheckBox" parent="MainMenu/CenterContainer/GridContainer"]
+margin_right = 333.0
+margin_bottom = 42.0
+text = "Fullscreen"
 
 [node name="GridContainer" type="GridContainer" parent="MainMenu/CenterContainer/GridContainer"]
+margin_top = 46.0
 margin_right = 333.0
-margin_bottom = 134.0
+margin_bottom = 180.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -155,21 +162,21 @@ max_value = 1.0
 step = 0.05
 
 [node name="NarrationCheckbox" type="CheckBox" parent="MainMenu/CenterContainer/GridContainer"]
-margin_top = 138.0
-margin_right = 333.0
-margin_bottom = 180.0
-text = "Narration"
-
-[node name="OnlyPlayNewLines" type="CheckBox" parent="MainMenu/CenterContainer/GridContainer"]
 margin_top = 184.0
 margin_right = 333.0
 margin_bottom = 226.0
-text = "Only Play New Lines"
+text = "Narration"
 
-[node name="ButtonPlay" type="Button" parent="MainMenu/CenterContainer/GridContainer"]
+[node name="OnlyPlayNewLines" type="CheckBox" parent="MainMenu/CenterContainer/GridContainer"]
 margin_top = 230.0
 margin_right = 333.0
 margin_bottom = 272.0
+text = "Only Play New Lines"
+
+[node name="ButtonPlay" type="Button" parent="MainMenu/CenterContainer/GridContainer"]
+margin_top = 276.0
+margin_right = 333.0
+margin_bottom = 318.0
 text = "Play"
 
 [node name="ButtonRestart" type="Button" parent="MainMenu/CenterContainer/GridContainer"]
@@ -187,9 +194,9 @@ margin_bottom = 201.0
 text = "Resume"
 
 [node name="ButtonQuit" type="Button" parent="MainMenu/CenterContainer/GridContainer"]
-margin_top = 276.0
+margin_top = 322.0
 margin_right = 333.0
-margin_bottom = 318.0
+margin_bottom = 364.0
 text = "Quit"
 
 [node name="Camera" type="Camera" parent="."]
@@ -249,23 +256,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0252, 0.957999, 0 )
 [node name="Cube1m16" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0236, 1.68217, 0 )
 
-[node name="Cube1m8" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.280112, 0, 0, 0, 0.112166, 0, 0, 0, 1, 15.7648, 1.65724, 0 )
-
 [node name="Cube1m24" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.280112, 0, 0, 0, 0.0394189, 0, 0, 0, 1, 15.5333, 1.62425, 0 )
+transform = Transform( 0.544218, 0, 0, 0, 0.0394189, 0, 0, 0, 1, 15.6854, 1.62425, 0 )
 
 [node name="Cube1m14" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.280112, 0, 0, 0, 0.112166, 0, 0, 0, 1, 15.2861, 1.65724, 0 )
+transform = Transform( 0.280112, 0, 0, 0, 0.138632, 0, 0, 0, 1, 15.2861, 1.66705, 0 )
 
 [node name="Cube1m9" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.112166, 0, 0, 0, 1, 16.5811, 2.09873, 0 )
 
 [node name="Cube1m23" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.241906, 0, 0, 0, 1.24973, 17.9973, 1.06666, 0 )
-
-[node name="Cube1m10" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.112166, 0, 0, 0, 1, 15.2796, 2.61385, 0 )
 
 [node name="Cube1m2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.970435, -0.241363, 0, 0.241363, 0.970435, 0, 0, 0, 1, 3.7878, 0.621816, 0 )
@@ -374,10 +375,10 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="EndScreen/CenterContainer"]
-margin_left = 672.0
-margin_top = 383.0
-margin_right = 928.0
-margin_bottom = 517.0
+margin_left = 832.0
+margin_top = 473.0
+margin_right = 1088.0
+margin_bottom = 607.0
 
 [node name="LabelFin" type="Label" parent="EndScreen/CenterContainer/GridContainer"]
 margin_right = 8.0
@@ -459,6 +460,7 @@ extents = Vector3( 1.39569, 1.64972, 1.33322 )
 pause_mode = 2
 script = ExtResource( 16 )
 
+[connection signal="toggled" from="MainMenu/CenterContainer/GridContainer/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="value_changed" from="MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
 [connection signal="value_changed" from="MainMenu/CenterContainer/GridContainer/GridContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
 [connection signal="value_changed" from="MainMenu/CenterContainer/GridContainer/GridContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]

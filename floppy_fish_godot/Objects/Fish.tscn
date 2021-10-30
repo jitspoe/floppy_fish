@@ -12,7 +12,7 @@
 [ext_resource path="res://Objects/FishPart.gd" type="Script" id=10]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.0715505, 0.0216856, 0.0526416 )
+extents = Vector3( 0.0715505, 0.0211171, 0.0219406 )
 
 [sub_resource type="CubeMesh" id=2]
 

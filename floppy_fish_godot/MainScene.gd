@@ -44,6 +44,7 @@ func _ready():
 	SubtitleLabel.visible = false
 	OS.window_maximized = true
 	MusicPlayer.volume_db = linear2db(MusicVolume)
+	LoadSettings()
 	LoadSaveData()
 	OpenMenu()
 
@@ -95,7 +96,29 @@ func LoadSaveData():
 func QuitRequested():
 	if (GameStarted):
 		SaveFishPosition()
-	#TODO SaveSettings()
+	SaveSettings()
+
+
+func LoadSettings():
+	var SaveDataFile := ConfigFile.new()
+	var Err := SaveDataFile.load(SETTINGS_DATA)
+	if (Err == OK):
+		SetMasterVolume(SaveDataFile.get_value("Sound", "MasterVolume", 1.0))
+		SetMusicVolume(SaveDataFile.get_value("Sound", "MusicVolume", 0.25))
+		SetEffectsVolume(SaveDataFile.get_value("Sound", "EffectsVolume", 1.0))
+	else:
+		print("Error loading settings: ", Err)
+
+
+func SaveSettings():
+	var SettingsFile := ConfigFile.new()
+	SettingsFile.set_value("Sound", "MasterVolume", MasterVolume)
+	SettingsFile.set_value("Sound", "MusicVolume", MusicVolume)
+	SettingsFile.set_value("Sound", "EffectsVolume", EffectsVolume)
+	SettingsFile.set_value("display", "window/size/fullscreen", OS.window_fullscreen)
+	var Err := SettingsFile.save(SETTINGS_DATA)
+	if (Err != OK):
+		print("Error saving settings: ", Err)
 
 
 func _notification(what):
@@ -113,6 +136,7 @@ func ProcessWhilePaused(_delta):
 
 func OpenMenu():
 	$MainMenu.visible = true
+	$MainMenu/CenterContainer/GridContainer/Fullscreen.pressed = OS.window_fullscreen
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider.value = MasterVolume
 	$MainMenu/CenterContainer/GridContainer/GridContainer/EffectsVolumeSlider.value = EffectsVolume
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MusicVolumeSlider.value = MusicVolume
@@ -121,7 +145,10 @@ func OpenMenu():
 	if (GameStarted):
 		$MainMenu/CenterContainer/GridContainer/ButtonPlay.visible = false
 		$MainMenu/CenterContainer/GridContainer/ButtonResume.visible = true
+		$MainMenu/CenterContainer/GridContainer/ButtonResume.grab_focus()
 		$MainMenu/CenterContainer/GridContainer/ButtonRestart.visible = true
+	else:
+		$MainMenu/CenterContainer/GridContainer/ButtonPlay.grab_focus()
 	get_tree().paused = true
 
 
@@ -290,16 +317,28 @@ func _on_NarrationCheckbox_toggled(button_pressed):
 
 
 func _on_MasterVolumeSlider_value_changed(value):
+	SetMasterVolume(value)
+
+
+func SetMasterVolume(value):
 	MasterVolume = value
 	AudioServer.set_bus_volume_db(MASTER_BUS, linear2db(value))
 
 
 func _on_EffectsVolumeSlider_value_changed(value):
+	SetEffectsVolume(value)
+
+
+func SetEffectsVolume(value):
 	EffectsVolume = value
 	AudioServer.set_bus_volume_db(SOUND_BUS, linear2db(value))
 
 
 func _on_MusicVolumeSlider_value_changed(value):
+	SetMusicVolume(value)
+
+
+func SetMusicVolume(value):
 	MusicVolume = value # Fade takes care of this so we don't need to adjust the bus.
 
 
@@ -311,3 +350,9 @@ func _on_ButtonQuit_pressed():
 	QuitRequested()
 	get_tree().quit()
 
+
+
+func _on_Fullscreen_toggled(button_pressed):
+	if (button_pressed):
+		OS.window_maximized = true
+	OS.window_fullscreen = button_pressed

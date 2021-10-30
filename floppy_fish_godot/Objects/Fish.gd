@@ -2,6 +2,9 @@ extends Spatial
 
 const MOTOR_SPEED := 50 #34 is decent for a 180 flip, but not strong enough for much height.
 const TAIL_SWIM_FACTOR := 0.25
+const STICK_DEADZONE_MIN := 0.3
+const STICK_DEADZONE_MAX := 0.9
+const STICK_ENABLED := true
 onready var HingeTail1 : HingeJoint = $HingeTail1
 onready var HingeTail2 : HingeJoint = $HingeTail2
 onready var HingeTail3 : HingeJoint = $HingeTail3
@@ -71,6 +74,11 @@ func _physics_process(_delta : float):
 	if Input.is_action_pressed("flop_right"):
 		MotorEnabled = true
 		MotorVelocity += MOTOR_SPEED
+	if (STICK_ENABLED):
+		var StickDirX := Input.get_joy_axis(0, JOY_AXIS_2)
+		if (abs(StickDirX) > STICK_DEADZONE_MIN):
+			MotorVelocity = inverse_lerp(STICK_DEADZONE_MIN, STICK_DEADZONE_MAX, abs(StickDirX)) * sign(StickDirX) * MOTOR_SPEED
+			MotorEnabled = true
 	HingeTail1.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
 	HingeTail1.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorVelocity)
 	HingeTail2.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
