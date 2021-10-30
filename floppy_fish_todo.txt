@@ -1,13 +1,22 @@
 FWOP TODO:
-- ESC to close menu.
-- Hook up volume controls.
-- Hook up new lines only system.
+- Save settings
+- Filter out drilling/sawing noise.
 - Better environment art.
 - "Not as effect as IN water."
 - Quit button.
+- Line about Foddian behavior even though the level is horizontal.
+- Fullscreen option.
+
 
 
 Nice to haves:
 - Red herring joke.
 - Seagull looking at the fish.
 - Clouds
+
+
+Done:
+- ESC to close menu.
+- Hook up volume controls.
+- Hook up new lines only system.
+- Save fish position.

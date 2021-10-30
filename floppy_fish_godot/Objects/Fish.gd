@@ -32,6 +32,8 @@ func _ready():
 	FishTail2Transform = FishTail2.global_transform
 	FishTail3Transform = FishTail3.global_transform
 	FishTail4Transform = FishTail4.global_transform
+# warning-ignore:return_value_discarded
+	#connect("tree_exiting", self, "TreeExiting")
 
 
 func Gasp():
@@ -88,3 +90,32 @@ func _physics_process(_delta : float):
 
 func _on_GaspTimer_timeout():
 	Gasp()
+
+
+# Too late.
+#func _exit_tree():
+#	get_parent().SetFishSaveData(GetSaveData())
+
+#func TreeExiting():
+#	get_parent().SetFishSaveData(GetSaveData())
+
+
+func GetSaveData() -> Dictionary:
+	return {
+		"HeadTransform" : FishHead.global_transform,
+		"MidTransform" : FishMid.global_transform,
+		"Tail1Transform" : FishTail1.global_transform,
+		"Tail2Transform" : FishTail2.global_transform,
+		"Tail3Transform" : FishTail3.global_transform,
+		"Tail4Transform" : FishTail4.global_transform
+		}
+
+
+func LoadSaveData(SaveData : Dictionary):
+	FishHead.global_transform = SaveData["HeadTransform"]
+	FishMid.global_transform = SaveData["MidTransform"]
+	FishTail1.global_transform = SaveData["Tail1Transform"]
+	FishTail2.global_transform = SaveData["Tail2Transform"]
+	FishTail3.global_transform = SaveData["Tail3Transform"]
+	FishTail4.global_transform = SaveData["Tail4Transform"]
+

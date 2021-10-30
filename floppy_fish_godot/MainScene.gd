@@ -24,6 +24,13 @@ var MasterVolume := 1.0
 var MusicVolume := 0.25
 var EffectsVolume := 1.0
 var VOOnlyNewLines := false
+const MASTER_BUS := 0
+const SOUND_BUS := 1
+const VO_BUS := 2
+const MUSIC_BUS := 3
+const FISH_SAVE_DATA := "user://FishSave.cfg"
+const SETTINGS_DATA := "user://Settings.cfg"
+#var FishSaveData := {}
 
 
 class VOQueueData:
@@ -37,6 +44,7 @@ func _ready():
 	SubtitleLabel.visible = false
 	OS.window_maximized = true
 	MusicPlayer.volume_db = linear2db(MusicVolume)
+	LoadSaveData()
 	OpenMenu()
 
 
@@ -63,22 +71,64 @@ func _process(delta : float):
 			MusicPlaying = false
 		else:
 			MusicPlaying = true
+
+
+func SaveFishPosition():
+	# Fish is already removed, so this doesn't work:
+	var FishSaveData = $Fish.GetSaveData()
+	if (!FishSaveData.empty()):
+		var SaveFile := ConfigFile.new()
+		SaveFile.set_value("FishData", "FishData", FishSaveData)
+		var Err := SaveFile.save(FISH_SAVE_DATA)
+		if (Err != OK):
+			print("Error saving: ", Err)
+
+
+func LoadSaveData():
+	var SaveDataFile := ConfigFile.new()
+	if (SaveDataFile.load(FISH_SAVE_DATA) == OK):
+		var FishData = SaveDataFile.get_value("FishData", "FishData", null)
+		if (FishData):
+			$Fish.LoadSaveData(FishData)
+
+
+func QuitRequested():
+	if (GameStarted):
+		SaveFishPosition()
+	#TODO SaveSettings()
+
+
+func _notification(what):
+	if (what == NOTIFICATION_WM_QUIT_REQUEST):
+		QuitRequested()
+
+
+func ProcessWhilePaused(_delta):
 	if (Input.is_action_just_pressed("ui_cancel")):
-		OpenMenu()
+		if ($MainMenu.visible):
+			CloseMenu()
+		else:
+			OpenMenu()
 
 
 func OpenMenu():
 	$MainMenu.visible = true
-	$MainMenu/CenterContainer/GridContainer/OnlyPlayNewLines.pressed = VOOnlyNewLines
-	$MainMenu/CenterContainer/GridContainer/NarrationCheckbox.pressed = VOEnabled
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider.value = MasterVolume
 	$MainMenu/CenterContainer/GridContainer/GridContainer/EffectsVolumeSlider.value = EffectsVolume
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MusicVolumeSlider.value = MusicVolume
+	$MainMenu/CenterContainer/GridContainer/NarrationCheckbox.pressed = VOEnabled
+	$MainMenu/CenterContainer/GridContainer/OnlyPlayNewLines.pressed = VOOnlyNewLines
 	if (GameStarted):
 		$MainMenu/CenterContainer/GridContainer/ButtonPlay.visible = false
 		$MainMenu/CenterContainer/GridContainer/ButtonResume.visible = true
 		$MainMenu/CenterContainer/GridContainer/ButtonRestart.visible = true
 	get_tree().paused = true
+
+
+func CloseMenu():
+	if (GameStarted):
+		$MainMenu.visible = false
+		get_tree().paused = false
 
 
 func UpdateVO():
@@ -118,7 +168,8 @@ func Restart():
 	Completed = false
 	TimeSinceLastVO = 0.0
 	VOQueue.clear()
-	TimeVOPlayed.clear()
+	if (!VOOnlyNewLines):
+		TimeVOPlayed.clear()
 
 
 func TimeFormat(Time : float):
@@ -236,3 +287,27 @@ func _on_NarrationCheckbox_toggled(button_pressed):
 	VOEnabled = button_pressed
 	if (!VOEnabled):
 		StopVO()
+
+
+func _on_MasterVolumeSlider_value_changed(value):
+	MasterVolume = value
+	AudioServer.set_bus_volume_db(MASTER_BUS, linear2db(value))
+
+
+func _on_EffectsVolumeSlider_value_changed(value):
+	EffectsVolume = value
+	AudioServer.set_bus_volume_db(SOUND_BUS, linear2db(value))
+
+
+func _on_MusicVolumeSlider_value_changed(value):
+	MusicVolume = value # Fade takes care of this so we don't need to adjust the bus.
+
+
+func _on_OnlyPlayNewLines_toggled(button_pressed):
+	VOOnlyNewLines = button_pressed
+
+
+func _on_ButtonQuit_pressed():
+	QuitRequested()
+	get_tree().quit()
+
