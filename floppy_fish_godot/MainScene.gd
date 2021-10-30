@@ -13,24 +13,31 @@ var TimeVOPlayed := {}
 var VOQueue := []
 var TimeSinceLastVO := 0.0
 var MusicPlaying := false
-var MusicVolume := 0.25
 var MusicFade := 1.0
 const MUSIC_FADE_SPEED := 0.25
 var MusicStopTime := 0.0
 var CurrentTime := 0.0
 var VOPlaying := false
 var VOEnabled := true
+var GameStarted := false
+var MasterVolume := 1.0
+var MusicVolume := 0.25
+var EffectsVolume := 1.0
+var VOOnlyNewLines := false
+
 
 class VOQueueData:
 	var TimeToPlay := 0.0
 	var TimeToSkip := 0.0
 	var VOLine : String
 
+
 func _ready():
 	$EndScreen.visible = false
 	SubtitleLabel.visible = false
 	OS.window_maximized = true
 	MusicPlayer.volume_db = linear2db(MusicVolume)
+	OpenMenu()
 
 
 func _process(delta : float):
@@ -56,6 +63,22 @@ func _process(delta : float):
 			MusicPlaying = false
 		else:
 			MusicPlaying = true
+	if (Input.is_action_just_pressed("ui_cancel")):
+		OpenMenu()
+
+
+func OpenMenu():
+	$MainMenu.visible = true
+	$MainMenu/CenterContainer/GridContainer/OnlyPlayNewLines.pressed = VOOnlyNewLines
+	$MainMenu/CenterContainer/GridContainer/NarrationCheckbox.pressed = VOEnabled
+	$MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider.value = MasterVolume
+	$MainMenu/CenterContainer/GridContainer/GridContainer/EffectsVolumeSlider.value = EffectsVolume
+	$MainMenu/CenterContainer/GridContainer/GridContainer/MusicVolumeSlider.value = MusicVolume
+	if (GameStarted):
+		$MainMenu/CenterContainer/GridContainer/ButtonPlay.visible = false
+		$MainMenu/CenterContainer/GridContainer/ButtonResume.visible = true
+		$MainMenu/CenterContainer/GridContainer/ButtonRestart.visible = true
+	get_tree().paused = true
 
 
 func UpdateVO():
@@ -183,3 +206,33 @@ func _on_VOPlayer_finished():
 
 func _on_HardTrigger_body_entered(_body):
 	QueueVO("multiple_ways", 5.0, 5.0)
+
+
+func PlayOrResume():
+	$MainMenu.visible = false
+	get_tree().paused = false
+	GameStarted = true
+
+
+func _on_ButtonPlay_pressed():
+	PlayOrResume()
+
+
+func _on_ButtonRestart_pressed():
+	PlayOrResume()
+	call_deferred("Restart")
+
+
+func _on_ButtonResume_pressed():
+	PlayOrResume()
+
+
+func StopVO():
+	$VOPlayer.stop()
+	VOQueue.clear()
+
+
+func _on_NarrationCheckbox_toggled(button_pressed):
+	VOEnabled = button_pressed
+	if (!VOEnabled):
+		StopVO()

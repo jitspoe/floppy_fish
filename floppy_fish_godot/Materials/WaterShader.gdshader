@@ -16,7 +16,9 @@ varying flat vec3 normal;
 float displace(vec3 v, float t) {
 	float b1 = v.x * 3.0 + v.z * 0.5 + t;
 	float b2 = v.x * 1.2 + v.z * 1.6 + t;
-	return v.y + 0.05 * sin(b1) + 0.05 * sin(b2);
+	float b3 = v.x * 0.61 + v.z * 0.11 - t;
+	float b4 = v.z * 2.1 + t;
+	return v.y + 0.05 * sin(b1) + 0.05 * sin(b2) + 0.07 * sin(b3) + 0.03 * sin(b4);
 }
 
 void vertex() {

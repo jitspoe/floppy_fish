@@ -1,0 +1,13 @@
+FWOP TODO:
+- ESC to close menu.
+- Hook up volume controls.
+- Hook up new lines only system.
+- Better environment art.
+- "Not as effect as IN water."
+- Quit button.
+
+
+Nice to haves:
+- Red herring joke.
+- Seagull looking at the fish.
+- Clouds
