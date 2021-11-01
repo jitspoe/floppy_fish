@@ -5,6 +5,8 @@ const TAIL_SWIM_FACTOR := 0.25
 const STICK_DEADZONE_MIN := 0.3
 const STICK_DEADZONE_MAX := 0.9
 const STICK_ENABLED := true
+var MouseAnalogEnabled := true
+var MouseDeadzone := 0.3
 onready var HingeTail1 : HingeJoint = $HingeTail1
 onready var HingeTail2 : HingeJoint = $HingeTail2
 onready var HingeTail3 : HingeJoint = $HingeTail3
@@ -18,7 +20,7 @@ onready var FishTail4 : RigidBody = $FishTail4
 onready var FishHeadAnim : AnimationPlayer = $FishHead/fish_mesh_head/AnimationPlayer
 onready var FishMaterial : SpatialMaterial = $FishHead/fish_mesh_head/Armature/Skeleton/Head.get_surface_material(0)
 var NonRed := 1.0
-const RED_FADE := 0.01
+const RED_FADE := 0.005
 
 
 var PreviousAngleBetweenTails := 0.0
@@ -71,26 +73,42 @@ func Restart():
 
 func _physics_process(_delta : float):
 	var MotorEnabled := false
-	var MotorVelocity := 0.0
+	var MotorSpeed := 0.0
 	if Input.is_action_pressed("flop_left"):
 		MotorEnabled = true
-		MotorVelocity -= MOTOR_SPEED
+		MotorSpeed -= 1.0
 	if Input.is_action_pressed("flop_right"):
 		MotorEnabled = true
-		MotorVelocity += MOTOR_SPEED
+		MotorSpeed += 1.0
 	if (STICK_ENABLED):
-		var StickDirX := Input.get_joy_axis(0, JOY_AXIS_2)
+		var StickDirX := Input.get_joy_axis(0, JOY_AXIS_2) # Right stick
+		var StickDirX2 := Input.get_joy_axis(0, JOY_AXIS_0) # Left stick
+		if (abs(StickDirX2) > abs(StickDirX)):
+			StickDirX = StickDirX2
+		var StickDirX3 := Input.get_joy_axis(0, JOY_AXIS_7) - Input.get_joy_axis(0, JOY_AXIS_6) # Left and right triggers
+		if (abs(StickDirX3) > abs(StickDirX)):
+			StickDirX = StickDirX3
 		if (abs(StickDirX) > STICK_DEADZONE_MIN):
-			MotorVelocity = inverse_lerp(STICK_DEADZONE_MIN, STICK_DEADZONE_MAX, abs(StickDirX)) * sign(StickDirX) * MOTOR_SPEED
+			MotorSpeed = inverse_lerp(STICK_DEADZONE_MIN, STICK_DEADZONE_MAX, abs(StickDirX)) * sign(StickDirX)
 			MotorEnabled = true
+	if (MouseAnalogEnabled):
+		var MousePositionX := get_viewport().get_mouse_position().x
+		var HalfWidth := get_viewport().size.x / 2
+		var MouseFraction := (MousePositionX - HalfWidth) / HalfWidth
+		MouseFraction *= 4.0 # Only use about 1/4 of the screen
+		if abs(MouseFraction) > MouseDeadzone:
+			MouseFraction = inverse_lerp(MouseDeadzone, 1.0, abs(MouseFraction)) * sign(MouseFraction)
+			MotorSpeed += MouseFraction
+			MotorEnabled = true
+	MotorSpeed = clamp(MotorSpeed, -1.0, 1.0) * MOTOR_SPEED
 	HingeTail1.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
-	HingeTail1.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorVelocity)
+	HingeTail1.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorSpeed)
 	HingeTail2.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
-	HingeTail2.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorVelocity)
+	HingeTail2.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorSpeed)
 	HingeTail3.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
-	HingeTail3.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorVelocity)
+	HingeTail3.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorSpeed)
 	HingeHead.set_flag(HingeJoint.FLAG_ENABLE_MOTOR, MotorEnabled)
-	HingeHead.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorVelocity)
+	HingeHead.set_param(HingeJoint.PARAM_MOTOR_TARGET_VELOCITY, MotorSpeed)
 	AverageLocation = (FishHead.global_transform.origin + FishMid.global_transform.origin + FishTail1.global_transform.origin + FishTail2.global_transform.origin + FishTail3.global_transform.origin) / 5.0
 	var AngleBetweenTails := FishTail3.global_transform.basis.x.angle_to(FishTail4.global_transform.basis.x)
 	AngleBetweenTails += FishTail2.global_transform.basis.x.angle_to(FishTail3.global_transform.basis.x)

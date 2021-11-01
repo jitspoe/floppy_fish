@@ -1,12 +1,13 @@
 FWOP TODO:
 - Better environment art.
-- "Not as effect as IN water."
-- Line about Foddian behavior even though the level is horizontal.
+- Better slider art
+- Better checkbox art.
 
 
 
 Nice to haves:
-- Red herring joke.
+- Voice line when you jump really high.
+- Voice line when you do a bunch of flips.
 - Seagull looking at the fish.
 - Clouds
 
@@ -22,3 +23,6 @@ Done:
 - Fullscreen option.
 - If you complete the game, the fish starts under the water.
 - Save the time.
+- "Not as effect as IN water."
+- Line about Foddian behavior even though the level is horizontal.
+- Red herring joke.

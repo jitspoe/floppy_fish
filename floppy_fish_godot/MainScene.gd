@@ -115,6 +115,7 @@ func LoadSettings():
 		SetEffectsVolume(SaveDataFile.get_value("Sound", "EffectsVolume", EffectsVolume))
 		VOEnabled = SaveDataFile.get_value("Sound", "VOEnabled", VOEnabled)
 		VOOnlyNewLines = SaveDataFile.get_value("Sound", "VOOnlyNewLines", VOOnlyNewLines)
+		Fish.MouseAnalogEnabled = SaveDataFile.get_value("Fish", "MouseAnalog", Fish.MouseAnalogEnabled)
 	else:
 		print("Error loading settings: ", Err)
 
@@ -127,6 +128,7 @@ func SaveSettings():
 	SettingsFile.set_value("display", "window/size/fullscreen", OS.window_fullscreen)
 	SettingsFile.set_value("Sound", "VOEnabled", VOEnabled)
 	SettingsFile.set_value("Sound", "VOOnlyNewLines", VOOnlyNewLines)
+	SettingsFile.set_value("Fish", "MouseAnalog", Fish.MouseAnalogEnabled)
 	var Err := SettingsFile.save(SETTINGS_DATA)
 	if (Err != OK):
 		print("Error saving settings: ", Err)
@@ -153,6 +155,7 @@ func OpenMenu():
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MusicVolumeSlider.value = MusicVolume
 	$MainMenu/CenterContainer/GridContainer/NarrationCheckbox.pressed = VOEnabled
 	$MainMenu/CenterContainer/GridContainer/OnlyPlayNewLines.pressed = VOOnlyNewLines
+	$MainMenu/CenterContainer/GridContainer/MouseAnalog.pressed = Fish.MouseAnalogEnabled
 	if (GameStarted):
 		$MainMenu/CenterContainer/GridContainer/ButtonPlay.visible = false
 		$MainMenu/CenterContainer/GridContainer/ButtonResume.visible = true
@@ -371,7 +374,7 @@ func _on_Fullscreen_toggled(button_pressed):
 	OS.window_fullscreen = button_pressed
 
 
-func _on_PaintBucketTrigger_body_entered(body):
+func _on_PaintBucketTrigger_body_entered(_body):
 	Fish.TurnRed()
 	if (!BucketSplash.playing):
 		var r = rand_range(0.0, 3.0)
@@ -385,3 +388,17 @@ func _on_PaintBucketTrigger_body_entered(body):
 	if (TimeSinceLastVO > 1.0):
 		QueueVO("red_herring1", 1.0)
 		QueueVO("red_herring2", 1.0)
+
+
+func _on_MouseAnalog_toggled(button_pressed):
+	Fish.MouseAnalogEnabled = button_pressed
+
+var LostProgressTriggerForwardHit := false
+
+
+func _on_LostProgressTriggerBack_body_entered(_body):
+	if (LostProgressTriggerForwardHit):
+		QueueVO("lost_progress", 1.0)
+
+func _on_LostProgressTriggerForward_body_entered(_body):
+	LostProgressTriggerForwardHit = true

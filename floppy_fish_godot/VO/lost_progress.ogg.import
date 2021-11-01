@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lost_progress.ogg-fdc5d2ac326022929e8102a42bb0238e.oggstr"
+
+[deps]
+
+source_file="res://VO/lost_progress.ogg"
+dest_files=[ "res://.import/lost_progress.ogg-fdc5d2ac326022929e8102a42bb0238e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
