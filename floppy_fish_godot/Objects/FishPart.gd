@@ -50,6 +50,7 @@ func _on_body_entered(_body):
 
 		StreamPlayer.unit_db = linear2db(clamp((VelocityDiff - VELOCITY_SOUND_THRESHOLD) * VELOCITY_SOUND_SCALE, 0.1, 2.0))
 		StreamPlayer.play()
+		get_parent().SlapPlayed(VelocityDiff)
 
 
 

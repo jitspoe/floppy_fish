@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Objects/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -16,6 +16,11 @@
 [ext_resource path="res://UI/SubtitleFont.tres" type="DynamicFont" id=14]
 [ext_resource path="res://MainMenu.gd" type="Script" id=15]
 [ext_resource path="res://ProcessWhilePaused.gd" type="Script" id=16]
+[ext_resource path="res://Objects/bin2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Materials/PlasticBin.tres" type="Material" id=18]
+[ext_resource path="res://Materials/PlasticBinOrange.tres" type="Material" id=19]
+[ext_resource path="res://Objects/paint_bucket.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Sound/small_splash1.wav" type="AudioStream" id=21]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 12, 1, 1 )
@@ -64,6 +69,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 19.9477, 0.0562439, 0 ), Vector3( 19.9477, 0.0274789, 0 ), Vector3( 19.9477, 0.0562439, 0 ) ]
 }
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.152678, 0.134333, 0.160642 )
+
+[sub_resource type="AudioStreamRandomPitch" id=9]
+audio_stream = ExtResource( 21 )
 
 [node name="MainScene" type="Spatial"]
 script = ExtResource( 2 )
@@ -345,8 +356,9 @@ shape = SubResource( 7 )
 [node name="SoundSplashEnd" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1358, -0.0219662, 0 )
 stream = ExtResource( 6 )
-unit_db = 8.235
+unit_db = 16.0
 bus = "Sound"
+attenuation_filter_db = 0.0
 
 [node name="WaterMesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.45202, 0, -8.75961 )
@@ -453,12 +465,74 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.607746, 1.42057, 0.00120251 
 extents = Vector3( 1.39569, 1.64972, 1.33322 )
 
 [node name="ReflectionProbe3" type="ReflectionProbe" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8066, 1.66955, 0.00120251 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12502, 1.74211, 0.00120251 )
+extents = Vector3( 1.39569, 1.64972, 1.33322 )
+
+[node name="ReflectionProbe4" type="ReflectionProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6749, 1.74211, 0.00120251 )
 extents = Vector3( 1.39569, 1.64972, 1.33322 )
 
 [node name="ProcessWhilePaused" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 16 )
+
+[node name="Background" type="Spatial" parent="."]
+
+[node name="bin2" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.999723, 0, 0.0235249, 0, 1, 0, -0.0235249, 0, 0.999723, -6.36547, 1.00239, -1.44396 )
+
+[node name="bin3" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.999088, 0, 0.0426952, 0, 1, 0, -0.0426952, 0, 0.999088, -5.23104, 1.00239, -1.44396 )
+
+[node name="Cube" parent="Background/bin3" index="0"]
+material/0 = ExtResource( 19 )
+
+[node name="bin4" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.999846, 0, 0.0175397, 0, 1, 0, -0.0175397, 0, 0.999846, -4.09176, 1.00239, -1.44396 )
+
+[node name="Cube" parent="Background/bin4" index="0"]
+material/0 = ExtResource( 18 )
+
+[node name="bin5" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.999846, 0, 0.0175397, 0, 1, 0, -0.0175397, 0, 0.999846, -4.60913, 1.28138, -1.54521 )
+
+[node name="Cube" parent="Background/bin5" index="0"]
+material/0 = ExtResource( 19 )
+
+[node name="bin7" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.98519, 0, -0.171465, 0, 1, 0, 0.171465, 0, 0.98519, -5.17071, 1.56696, -1.53517 )
+
+[node name="bin6" parent="Background" instance=ExtResource( 17 )]
+transform = Transform( 0.999038, 0, 0.0438635, 0, 1, 0, -0.0438635, 0, 0.999038, -5.775, 1.28291, -1.3954 )
+
+[node name="Cube" parent="Background/bin6" index="0"]
+material/0 = ExtResource( 18 )
+
+[node name="paint_bucket" parent="." instance=ExtResource( 20 )]
+transform = Transform( -0.538124, 0, -0.842866, 0, 1, 0, 0.842866, 0, -0.538124, 7.08238, 1.00387, -2.42571e-08 )
+
+[node name="PaintBucketTrigger" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08238, 1.00387, -2.42571e-08 )
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape" type="CollisionShape" parent="PaintBucketTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.187802, 0 )
+shape = SubResource( 8 )
+
+[node name="BucketSplash" type="AudioStreamPlayer3D" parent="PaintBucketTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254592, 0 )
+stream = SubResource( 9 )
+unit_db = 40.0
+bus = "Sound"
+attenuation_filter_db = 0.0
+
+[node name="PaintBucketStaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08238, 1.00387, -2.42571e-08 )
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="PaintBucketStaticBody"]
+depth = 0.3
+polygon = PoolVector2Array( -0.225641, 0.378239, -0.210361, 0.379003, -0.102921, 0.104223, 0.107993, 0.105533, 0.211372, 0.379767, 0.227416, 0.379003, 0.190037, -0.00514466, -0.187274, -0.00722349 )
 
 [connection signal="toggled" from="MainMenu/CenterContainer/GridContainer/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="value_changed" from="MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
@@ -475,3 +549,9 @@ script = ExtResource( 16 )
 [connection signal="body_entered" from="HardTrigger" to="." method="_on_HardTrigger_body_entered"]
 [connection signal="pressed" from="EndScreen/CenterContainer/GridContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="finished" from="VOPlayer" to="." method="_on_VOPlayer_finished"]
+[connection signal="body_entered" from="PaintBucketTrigger" to="." method="_on_PaintBucketTrigger_body_entered"]
+
+[editable path="Background/bin3"]
+[editable path="Background/bin4"]
+[editable path="Background/bin5"]
+[editable path="Background/bin6"]

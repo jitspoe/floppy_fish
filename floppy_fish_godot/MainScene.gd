@@ -7,6 +7,7 @@ onready var Fish : Spatial = $Fish
 onready var SubtitleLabel : Label = $HUD/Subtitle
 onready var VOPlayer : AudioStreamPlayer = $VOPlayer
 onready var MusicPlayer : AudioStreamPlayer = $MusicPlayer
+onready var BucketSplash : AudioStreamPlayer3D = $PaintBucketTrigger/BucketSplash
 var GameTime := 0.0
 var Completed := false
 var TimeVOPlayed := {}
@@ -30,7 +31,6 @@ const VO_BUS := 2
 const MUSIC_BUS := 3
 const FISH_SAVE_DATA := "user://FishSave.cfg"
 const SETTINGS_DATA := "user://Settings.cfg"
-#var FishSaveData := {}
 
 
 class VOQueueData:
@@ -74,12 +74,15 @@ func _process(delta : float):
 			MusicPlaying = true
 
 
-func SaveFishPosition():
+func SaveGame():
 	# Fish is already removed, so this doesn't work:
 	var FishSaveData = $Fish.GetSaveData()
 	if (!FishSaveData.empty()):
 		var SaveFile := ConfigFile.new()
 		SaveFile.set_value("FishData", "FishData", FishSaveData)
+		SaveFile.set_value("VOData", "TimeVOPlayed", TimeVOPlayed)
+		SaveFile.set_value("GameData", "GameTime", GameTime)
+		SaveFile.set_value("GameData", "Completed", Completed)
 		var Err := SaveFile.save(FISH_SAVE_DATA)
 		if (Err != OK):
 			print("Error saving: ", Err)
@@ -88,14 +91,18 @@ func SaveFishPosition():
 func LoadSaveData():
 	var SaveDataFile := ConfigFile.new()
 	if (SaveDataFile.load(FISH_SAVE_DATA) == OK):
-		var FishData = SaveDataFile.get_value("FishData", "FishData", null)
-		if (FishData):
-			$Fish.LoadSaveData(FishData)
+		Completed = SaveDataFile.get_value("GameData", "Completed", false)
+		if (!Completed):
+			var FishData = SaveDataFile.get_value("FishData", "FishData", null)
+			if (FishData):
+				$Fish.LoadSaveData(FishData)
+		TimeVOPlayed = SaveDataFile.get_value("VOData", "TimeVOPlayed", {})
+		GameTime = SaveDataFile.get_value("GameData", "GameTime", 0.0)
 
 
 func QuitRequested():
 	if (GameStarted):
-		SaveFishPosition()
+		SaveGame()
 	SaveSettings()
 
 
@@ -103,9 +110,11 @@ func LoadSettings():
 	var SaveDataFile := ConfigFile.new()
 	var Err := SaveDataFile.load(SETTINGS_DATA)
 	if (Err == OK):
-		SetMasterVolume(SaveDataFile.get_value("Sound", "MasterVolume", 1.0))
-		SetMusicVolume(SaveDataFile.get_value("Sound", "MusicVolume", 0.25))
-		SetEffectsVolume(SaveDataFile.get_value("Sound", "EffectsVolume", 1.0))
+		SetMasterVolume(SaveDataFile.get_value("Sound", "MasterVolume", MasterVolume))
+		SetMusicVolume(SaveDataFile.get_value("Sound", "MusicVolume", MusicVolume))
+		SetEffectsVolume(SaveDataFile.get_value("Sound", "EffectsVolume", EffectsVolume))
+		VOEnabled = SaveDataFile.get_value("Sound", "VOEnabled", VOEnabled)
+		VOOnlyNewLines = SaveDataFile.get_value("Sound", "VOOnlyNewLines", VOOnlyNewLines)
 	else:
 		print("Error loading settings: ", Err)
 
@@ -116,6 +125,8 @@ func SaveSettings():
 	SettingsFile.set_value("Sound", "MusicVolume", MusicVolume)
 	SettingsFile.set_value("Sound", "EffectsVolume", EffectsVolume)
 	SettingsFile.set_value("display", "window/size/fullscreen", OS.window_fullscreen)
+	SettingsFile.set_value("Sound", "VOEnabled", VOEnabled)
+	SettingsFile.set_value("Sound", "VOOnlyNewLines", VOOnlyNewLines)
 	var Err := SettingsFile.save(SETTINGS_DATA)
 	if (Err != OK):
 		print("Error saving settings: ", Err)
@@ -289,6 +300,8 @@ func _on_HardTrigger_body_entered(_body):
 func PlayOrResume():
 	$MainMenu.visible = false
 	get_tree().paused = false
+	if (Completed && !GameStarted): # Hit play after loading the game after completing it.
+		Restart()
 	GameStarted = true
 
 
@@ -356,3 +369,19 @@ func _on_Fullscreen_toggled(button_pressed):
 	if (button_pressed):
 		OS.window_maximized = true
 	OS.window_fullscreen = button_pressed
+
+
+func _on_PaintBucketTrigger_body_entered(body):
+	Fish.TurnRed()
+	if (!BucketSplash.playing):
+		var r = rand_range(0.0, 3.0)
+		if (r < 1.0):
+			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash1.wav")
+		elif (r < 2.0):
+			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash2.wav")
+		elif (r < 3.0):
+			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash3.wav")
+		BucketSplash.play()
+	if (TimeSinceLastVO > 1.0):
+		QueueVO("red_herring1", 1.0)
+		QueueVO("red_herring2", 1.0)

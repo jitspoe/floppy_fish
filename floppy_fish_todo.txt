@@ -2,8 +2,6 @@ FWOP TODO:
 - Better environment art.
 - "Not as effect as IN water."
 - Line about Foddian behavior even though the level is horizontal.
-- If you complete the game, the fish starts under the water.
-- Save the time.
 
 
 
@@ -22,3 +20,5 @@ Done:
 - Filter out drilling/sawing noise.
 - Quit button.
 - Fullscreen option.
+- If you complete the game, the fish starts under the water.
+- Save the time.

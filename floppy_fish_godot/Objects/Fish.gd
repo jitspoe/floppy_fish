@@ -16,6 +16,10 @@ onready var FishTail2 : RigidBody = $FishTail2
 onready var FishTail3 : RigidBody = $FishTail3
 onready var FishTail4 : RigidBody = $FishTail4
 onready var FishHeadAnim : AnimationPlayer = $FishHead/fish_mesh_head/AnimationPlayer
+onready var FishMaterial : SpatialMaterial = $FishHead/fish_mesh_head/Armature/Skeleton/Head.get_surface_material(0)
+var NonRed := 1.0
+const RED_FADE := 0.01
+
 
 var PreviousAngleBetweenTails := 0.0
 var AverageLocation : Vector3
@@ -127,3 +131,14 @@ func LoadSaveData(SaveData : Dictionary):
 	FishTail3.global_transform = SaveData["Tail3Transform"]
 	FishTail4.global_transform = SaveData["Tail4Transform"]
 
+
+func TurnRed():
+	NonRed = 0.1
+	FishMaterial.albedo_color = Color(1.0, NonRed, NonRed, 1.0)
+
+
+func SlapPlayed(VelocityDiff : float):
+	if (VelocityDiff > 1.0):
+		if (NonRed < 1.0):
+			NonRed += RED_FADE
+			FishMaterial.albedo_color = Color(1.0, NonRed, NonRed, 1.0)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/red_herring2.ogg-693429e9f90043e141ff04de9f03b1b1.oggstr"
+
+[deps]
+
+source_file="res://VO/red_herring2.ogg"
+dest_files=[ "res://.import/red_herring2.ogg-693429e9f90043e141ff04de9f03b1b1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

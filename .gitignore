@@ -2,3 +2,5 @@ floppy_fish_godot/.import/
 *.rpp-bak
 exports/
 floppy_fish_godot_ALT/
+*.xlsx#
+*.blend1
