@@ -2,5 +2,5 @@
 
 [resource]
 params_diffuse_mode = 1
-albedo_color = Color( 0.4, 0.352941, 0.290196, 1 )
+albedo_color = Color( 0.38, 0.34542, 0.3002, 1 )
 metallic_specular = 0.0

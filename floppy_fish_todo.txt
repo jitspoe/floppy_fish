@@ -1,7 +1,6 @@
 FWOP TODO:
 - Better environment art.
-- Better slider art
-- Better checkbox art.
+
 
 
 
@@ -26,3 +25,5 @@ Done:
 - "Not as effect as IN water."
 - Line about Foddian behavior even though the level is horizontal.
 - Red herring joke.
+- Better slider art
+- Better checkbox art.
