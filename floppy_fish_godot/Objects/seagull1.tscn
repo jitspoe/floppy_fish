@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Objects/seagull1.glb" type="PackedScene" id=1]
+[ext_resource path="res://Objects/seagull1.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "look_right"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "look_left"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "look_up"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "look_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "look_down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 1 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 2 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 3 )
+blend_point_2/pos = Vector2( 0, 0.9 )
+blend_point_3/node = SubResource( 4 )
+blend_point_3/pos = Vector2( 0, 0 )
+blend_point_4/node = SubResource( 5 )
+blend_point_4/pos = Vector2( 0, -0.9 )
+
+[node name="seagull1" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/blend_position = Vector2( 0.624299, 0.293103 )

@@ -8,6 +8,7 @@ onready var SubtitleLabel : Label = $HUD/Subtitle
 onready var VOPlayer : AudioStreamPlayer = $VOPlayer
 onready var MusicPlayer : AudioStreamPlayer = $MusicPlayer
 onready var BucketSplash : AudioStreamPlayer3D = $PaintBucketTrigger/BucketSplash
+onready var Seagull = $mooring1/seagull1
 var GameTime := 0.0
 var Completed := false
 var TimeVOPlayed := {}
@@ -52,6 +53,7 @@ func _ready():
 func _process(delta : float):
 	CurrentTime = OS.get_ticks_msec() / 1000.0
 	TimeSinceLastVO += delta
+	Seagull.LookAtPosition(Fish.AverageLocation)
 	if (VOPlaying):
 		TimeSinceLastVO = 0.0
 	if (TimeSinceLastVO > 0.0):

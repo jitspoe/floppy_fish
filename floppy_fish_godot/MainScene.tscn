@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Objects/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -29,33 +29,35 @@
 [ext_resource path="res://Materials/PlasticBinPurple.tres" type="Material" id=27]
 [ext_resource path="res://Objects/lobster_trap_incomplete.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Materials/WoodMaterial2.tres" type="Material" id=29]
+[ext_resource path="res://Objects/mooring1.glb" type="PackedScene" id=30]
+[ext_resource path="res://Objects/seagull1.tscn" type="PackedScene" id=31]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.541602, 0.5, 0.5 )
 
-[sub_resource type="BoxShape" id=12]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.529394, 0.5, 0.5 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 12, 1, 1 )
 
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 5.54746, 1, 1 )
+[sub_resource type="CubeMesh" id=4]
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 0.329184, 0.32733, 1 )
+extents = Vector3( 5.54746, 1, 1 )
 
 [sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.329184, 0.32733, 1 )
+
+[sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.222015, 1, 1 )
 
-[sub_resource type="PlaneMesh" id=7]
+[sub_resource type="PlaneMesh" id=8]
 size = Vector2( 60, 20 )
 subdivide_width = 120
 subdivide_depth = 40
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -83,17 +85,20 @@ tracks/1/keys = {
 "values": [ Vector3( 19.9477, 0.0562439, 0 ), Vector3( 19.9477, 0.0274789, 0 ), Vector3( 19.9477, 0.0562439, 0 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 metallic = 1.0
 metallic_specular = 0.75
 roughness = 0.08
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.152678, 0.134333, 0.160642 )
 
-[sub_resource type="AudioStreamRandomPitch" id=11]
+[sub_resource type="AudioStreamRandomPitch" id=12]
 audio_stream = ExtResource( 21 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.513726, 0.341176, 0.266667, 1 )
 
 [node name="MainScene" type="Spatial"]
 script = ExtResource( 2 )
@@ -202,14 +207,14 @@ transform = Transform( 0.841643, -0.00806491, 0, 0.344411, 0.0197084, 0, 0, 0, 0
 
 [node name="CollisionShape" parent="Cube1m29" index="0"]
 transform = Transform( 1, 3.06845e-10, 0, -5.77657e-06, 1, 0, 0, 0, 1, -0.0291421, 1.84255e-05, 0 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="Cube1m31" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.841397, -0.00806491, -0.00433725, 0.34431, 0.0197084, -0.00177486, 0.0219961, -1.18805e-11, 0.193691, 9.30078, 1.17938, 0.361273 )
 
 [node name="CollisionShape" parent="Cube1m31" index="0"]
 transform = Transform( 1, 3.06845e-10, 0, -5.77657e-06, 1, 0, 0, 0, 1, -0.0291421, 1.84255e-05, 0 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="MeshInstance" parent="Cube1m31" index="1"]
 material/0 = ExtResource( 29 )
@@ -219,7 +224,7 @@ transform = Transform( 0.840592, -0.00806491, 0.0110427, 0.343981, 0.0197084, 0.
 
 [node name="CollisionShape" parent="Cube1m32" index="0"]
 transform = Transform( 1, 3.06845e-10, 0, -5.77657e-06, 1, 0, 0, 0, 1, -0.0291421, 1.84255e-05, 0 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1.21, 0, 0, 0, 1, 0, 0, 0, 1, 4.04006, -1.19209e-07, 0.000200868 )
@@ -228,11 +233,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 11.9995, 0, 0, 0, 1, 0, 0, 0, 1.8, 0, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 material/0 = ExtResource( 12 )
 
 [node name="StaticBody3" type="StaticBody" parent="."]
@@ -242,11 +247,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
 transform = Transform( 11.9995, 0, 0, 2.68116e-14, 1, 0, 0, 0, 1, -1.06581e-14, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 material/0 = ExtResource( 12 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -274,7 +279,7 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="EndTrigger"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="StartTrigger" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64238, 0.913914, 0 )
@@ -285,7 +290,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="StartTrigger"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="HardTrigger" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7969, 0.979214, 0 )
@@ -296,7 +301,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="HardTrigger"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="LostProgressTriggerBack" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15031, 0.979214, 0 )
@@ -307,7 +312,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="LostProgressTriggerBack"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="LostProgressTriggerForward" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.89494, 0.979214, 0 )
@@ -318,7 +323,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="LostProgressTriggerForward"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="SoundSplashEnd" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1358, -0.0219662, 0 )
@@ -329,13 +334,13 @@ attenuation_filter_db = 0.0
 
 [node name="WaterMesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.45202, 0, -8.75961 )
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 material/0 = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
 autoplay = "Ambient"
-anims/Ambient = SubResource( 8 )
+anims/Ambient = SubResource( 9 )
 
 [node name="EndScreen" type="Control" parent="."]
 visible = false
@@ -580,7 +585,7 @@ transform = Transform( -0.538124, 0, -0.842866, 0, 1, 0, 0.842866, 0, -0.538124,
 
 [node name="Bucket" parent="paint_bucket" index="0"]
 layers = 2
-material/0 = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="PaintBucketTrigger" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08238, 1.00387, -2.42571e-08 )
@@ -589,11 +594,11 @@ collision_mask = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="PaintBucketTrigger"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.187802, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="BucketSplash" type="AudioStreamPlayer3D" parent="PaintBucketTrigger"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254592, 0 )
-stream = SubResource( 11 )
+stream = SubResource( 12 )
 unit_db = 40.0
 bus = "Sound"
 attenuation_filter_db = 0.0
@@ -847,6 +852,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6103, 0.267411, 0.629665 )
 [node name="lobster_trap_incomplete" parent="." instance=ExtResource( 28 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5787, 1.16288, 0 )
 
+[node name="mooring1" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98171, 0.948381, -1.39382 )
+
+[node name="Cylinder" parent="mooring1" index="0"]
+material/0 = SubResource( 13 )
+
+[node name="seagull1" parent="mooring1" instance=ExtResource( 31 )]
+transform = Transform( -1.34028, 0, 0.404527, 0, 1.4, 0, -0.404527, 0, -1.34028, 0.0126556, 0.452911, 0.0038197 )
+
+[node name="mooring3" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.73171, 0.948381, -1.39382 )
+
+[node name="Cylinder" parent="mooring3" index="0"]
+material/0 = SubResource( 13 )
+
+[node name="mooring2" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.61271, 0.948381, -1.39382 )
+
+[node name="Cylinder" parent="mooring2" index="0"]
+material/0 = SubResource( 13 )
+
 [connection signal="body_entered" from="EndTrigger" to="." method="_on_EndTrigger_body_entered"]
 [connection signal="body_entered" from="StartTrigger" to="." method="_on_StartTrigger_body_entered"]
 [connection signal="body_entered" from="HardTrigger" to="." method="_on_HardTrigger_body_entered"]
@@ -905,3 +931,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5787, 1.16288, 0 )
 [editable path="lobster_trap_wood11"]
 [editable path="lobster_trap_wood9"]
 [editable path="lobster_trap_wood10"]
+[editable path="mooring1"]
+[editable path="mooring3"]
+[editable path="mooring2"]
