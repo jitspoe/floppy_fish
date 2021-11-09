@@ -1,7 +1,6 @@
 
 
-Making a successful indie game is tough, so this one is very likely to flop.
-You'd think, as a fish, scaling these obstacles would be easier.
+
 I couldn't decide what to do for this jam and flip-flopped until the last day.
 Keep floundering.  You're sure to get somewhere eventually!
 Water you doing?  You're supposed to go the other way!
@@ -13,3 +12,6 @@ It's a shame I didn't make this game back in the early 90's, because it would ha
 Done:
 Win: "Oh, buoy!"
 Fin.
+Making a successful indie game is tough, so this one is very likely to flop.
+You'd think, as a fish, scaling these obstacles would be easier.
+

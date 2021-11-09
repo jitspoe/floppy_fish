@@ -404,11 +404,11 @@ anchor_bottom = 1.0
 margin_left = -677.0
 margin_top = -182.0
 margin_right = 677.0
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 14 )
 text = "Subtitle test.
 test 2"
 align = 1
