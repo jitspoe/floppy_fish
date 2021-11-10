@@ -68,12 +68,11 @@ func _process(delta : float):
 		else:
 			MusicFade += delta * MUSIC_FADE_SPEED
 		MusicFade = min(1.0, MusicFade)
-		MusicPlayer.volume_db = linear2db(MusicFade * MusicVolume)
 		if (MusicFade <= 0.0):
 			MusicPlayer.stop()
 			MusicPlaying = false
 		else:
-			MusicPlaying = true
+			MusicPlayer.volume_db = linear2db(MusicFade * MusicVolume)
 
 
 func SaveGame():
@@ -212,6 +211,7 @@ func Restart():
 	GameTime = 0.0
 	Completed = false
 	TimeSinceLastVO = 0.0
+	LostProgressTriggerForwardHit = false
 	VOQueue.clear()
 	if (!VOOnlyNewLines):
 		TimeVOPlayed.clear()
