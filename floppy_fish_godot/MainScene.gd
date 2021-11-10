@@ -165,6 +165,8 @@ func OpenMenu():
 		$MainMenu/CenterContainer/GridContainer/ButtonRestart.visible = true
 	else:
 		$MainMenu/CenterContainer/GridContainer/ButtonPlay.grab_focus()
+	if (OS.get_name() == "HTML5"):
+		$MainMenu/CenterContainer/GridContainer/ButtonQuit.visible = false # Don't show quit button in web builds
 	get_tree().paused = true
 
 

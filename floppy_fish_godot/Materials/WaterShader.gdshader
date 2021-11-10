@@ -48,6 +48,6 @@ void fragment() {
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
-	ALPHA = clamp(UV.y * 5.0, 0.0, 1.0);
+	ALPHA = clamp(UV.y * 1.5, 0.0, 1.0);
 	NORMAL = normal;
 }

@@ -4,3 +4,4 @@ exports/
 floppy_fish_godot_ALT/
 *.xlsx#
 *.blend1
+*-autosave.kra
