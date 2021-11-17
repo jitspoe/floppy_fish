@@ -149,6 +149,7 @@ func ProcessWhilePaused(_delta):
 
 
 func OpenMenu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$MainMenu.visible = true
 	$MainMenu/CenterContainer/GridContainer/Fullscreen.pressed = OS.window_fullscreen
 	$MainMenu/CenterContainer/GridContainer/GridContainer/MasterVolumeSlider.value = MasterVolume
@@ -173,6 +174,14 @@ func CloseMenu():
 	if (GameStarted):
 		$MainMenu.visible = false
 		get_tree().paused = false
+		SetMouseMode()
+
+
+func SetMouseMode():
+	if (Fish.MouseAnalogEnabled):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func UpdateVO():
@@ -306,6 +315,7 @@ func _on_HardTrigger_body_entered(_body):
 
 func PlayOrResume():
 	$MainMenu.visible = false
+	SetMouseMode()
 	get_tree().paused = false
 	if (Completed && !GameStarted): # Hit play after loading the game after completing it.
 		Restart()
@@ -383,11 +393,12 @@ func _on_PaintBucketTrigger_body_entered(_body):
 	if (!BucketSplash.playing):
 		var r = rand_range(0.0, 3.0)
 		if (r < 1.0):
-			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash1.wav")
+			BucketSplash.stream = preload("res://Sound/small_splash1.wav")
 		elif (r < 2.0):
-			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash2.wav")
+			BucketSplash.stream = preload("res://Sound/small_splash2.wav")
 		elif (r < 3.0):
-			BucketSplash.stream.audio_stream = preload("res://Sound/small_splash3.wav")
+			BucketSplash.stream = preload("res://Sound/small_splash3.wav")
+		BucketSplash.pitch_scale = rand_range(0.9, 1.1)
 		BucketSplash.play()
 	if (TimeSinceLastVO > 1.0):
 		QueueVO("red_herring1", 1.0)

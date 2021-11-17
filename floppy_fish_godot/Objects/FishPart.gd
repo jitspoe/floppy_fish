@@ -32,23 +32,24 @@ func _on_body_entered(_body):
 	if (VelocityDiff > VELOCITY_SOUND_THRESHOLD):
 		var r = rand_range(0.0, 8.0)
 		if (r < 1.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND1
+			StreamPlayer.stream = IMPACT_SOUND1
 		elif (r < 2.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND2
+			StreamPlayer.stream = IMPACT_SOUND2
 		elif (r < 3.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND3
+			StreamPlayer.stream = IMPACT_SOUND3
 		elif (r < 4.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND4
+			StreamPlayer.stream = IMPACT_SOUND4
 		elif (r < 5.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND5
+			StreamPlayer.stream = IMPACT_SOUND5
 		elif (r < 6.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND6
+			StreamPlayer.stream = IMPACT_SOUND6
 		elif (r < 7.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND7
+			StreamPlayer.stream = IMPACT_SOUND7
 		else:
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND8
+			StreamPlayer.stream = IMPACT_SOUND8
 
 		StreamPlayer.unit_db = linear2db(clamp((VelocityDiff - VELOCITY_SOUND_THRESHOLD) * VELOCITY_SOUND_SCALE, 0.1, 2.0))
+		StreamPlayer.pitch_scale = rand_range(0.9, 1.0)
 		StreamPlayer.play()
 		get_parent().SlapPlayed(VelocityDiff)
 
@@ -59,21 +60,22 @@ func _on_FishTail4_body_entered(_body):
 	if (VelocityDiff > VELOCITY_SOUND_THRESHOLD):
 		var r = rand_range(0.0, 8.0)
 		if (r < 1.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL1
+			StreamPlayer.stream = IMPACT_SOUND_TAIL1
 		elif (r < 2.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL2
+			StreamPlayer.stream = IMPACT_SOUND_TAIL2
 		elif (r < 3.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL3
+			StreamPlayer.stream = IMPACT_SOUND_TAIL3
 		elif (r < 4.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL4
+			StreamPlayer.stream = IMPACT_SOUND_TAIL4
 		elif (r < 5.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL5
+			StreamPlayer.stream = IMPACT_SOUND_TAIL5
 		elif (r < 6.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL6
+			StreamPlayer.stream = IMPACT_SOUND_TAIL6
 		elif (r < 7.0):
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL7
+			StreamPlayer.stream = IMPACT_SOUND_TAIL7
 		else:
-			StreamPlayer.stream.audio_stream = IMPACT_SOUND_TAIL8
+			StreamPlayer.stream = IMPACT_SOUND_TAIL8
 
+		StreamPlayer.pitch_scale = rand_range(0.9, 1.0)
 		StreamPlayer.unit_db = linear2db(clamp((VelocityDiff - VELOCITY_SOUND_THRESHOLD) * VELOCITY_SOUND_SCALE, 0.1, 2.0))
 		StreamPlayer.play()

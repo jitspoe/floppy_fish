@@ -1,5 +1,4 @@
 FWOP TODO:
-- Better environment art.
 
 
 
@@ -7,7 +6,7 @@ FWOP TODO:
 Nice to haves:
 - Voice line when you jump really high.
 - Voice line when you do a bunch of flips.
-- Seagull looking at the fish.
+- Half pipe + tony hawk joke
 - Clouds
 
 
@@ -27,3 +26,5 @@ Done:
 - Red herring joke.
 - Better slider art
 - Better checkbox art.
+- Better environment art.
+- Seagull looking at the fish.

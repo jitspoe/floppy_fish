@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Materials/WoodMaterial2.tres" type="Material" id=1]
+[ext_resource path="res://Objects/game by sign.png" type="Texture" id=2]
+[ext_resource path="res://Materials/Metal1.tres" type="Material" id=3]
+[ext_resource path="res://Objects/sign.glb" type="PackedScene" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.299007, 0.302226, 0.0195256 )
+
+[node name="sign" instance=ExtResource( 4 )]
+
+[node name="Cube" parent="." index="0"]
+material/0 = SubResource( 1 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.941717, 0.336405, 0, -0.336405, 0.941717, 0, 0.281107, 0.0971882 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody" index="1"]
+transform = Transform( 1, 0, 0, 0, -0.941788, 0.336208, 0, -0.336208, -0.941788, 0, 0.280254, -0.0980572 )
+shape = SubResource( 2 )

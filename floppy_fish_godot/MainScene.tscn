@@ -14,6 +14,7 @@
 [ext_resource path="res://Materials/ConcreteMaterial.tres" type="Material" id=12]
 [ext_resource path="res://Objects/bin1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/SubtitleFont.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Objects/sign.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ProcessWhilePaused.gd" type="Script" id=16]
 [ext_resource path="res://Objects/bin2.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Materials/PlasticBin.tres" type="Material" id=18]
@@ -93,9 +94,6 @@ roughness = 0.08
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.152678, 0.134333, 0.160642 )
 
-[sub_resource type="AudioStreamRandomPitch" id=12]
-audio_stream = ExtResource( 21 )
-
 [sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 0.513726, 0.341176, 0.266667, 1 )
 
@@ -112,7 +110,7 @@ transform = Transform( 1, 0, 0, 0, 0.879698, 0.475532, 0, -0.475532, 0.879698, 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50743, 2.0186, 1.73472e-18 )
 
 [node name="Cube1m17" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.00720942, 0, 0.99786, 0, 0.0893153, 0, -0.110024, 0, 0.0653857, -0.990311, 0.997444, -1.06075 )
+transform = Transform( 0.00720942, 0, 0.99786, 0, 0.0893153, 0, -0.110024, 0, 0.0653857, -1.18751, 0.997444, -0.481432 )
 
 [node name="Cube1m25" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.000679313, 0, 0.999981, 0, 0.0893153, 0, -0.110258, 0, -0.00616098, 13.5854, 0.997444, 0.185926 )
@@ -134,6 +132,12 @@ transform = Transform( 0.320829, 0, 0, 0, 0.108491, 0, 0, 0, 1, -2.397, 1.04138,
 
 [node name="Cube1m28" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.447567, 0, 0, 0, 0.108491, 0, 0, 0, 1, -2.91323, 1.04138, -0.010465 )
+
+[node name="Cube1m33" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.447567, 0, 0, 0, 0.108491, 0, 0, 0, 1, -2.6377, 1.04138, -0.010465 )
+
+[node name="MeshInstance" parent="Cube1m33" index="1"]
+visible = false
 
 [node name="Cube1m18" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.101817, 0, -0.38378, 0, 0.0893153, 0, 0.0423155, 0, 0.923425, -4.39498, 0.997444, -0.25 )
@@ -597,7 +601,7 @@ shape = SubResource( 11 )
 
 [node name="BucketSplash" type="AudioStreamPlayer3D" parent="PaintBucketTrigger"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254592, 0 )
-stream = SubResource( 12 )
+stream = ExtResource( 21 )
 unit_db = 40.0
 bus = "Sound"
 attenuation_filter_db = 0.0
@@ -871,6 +875,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.61271, 0.948381, -1.39382 )
 [node name="Cylinder" parent="mooring2" index="0"]
 material/0 = SubResource( 13 )
 
+[node name="sign" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.990579, 0, -0.136943, 0, 1, 0, 0.136943, 0, 0.990579, -7.6648, 1.00036, 0.592697 )
+
 [connection signal="body_entered" from="EndTrigger" to="." method="_on_EndTrigger_body_entered"]
 [connection signal="body_entered" from="StartTrigger" to="." method="_on_StartTrigger_body_entered"]
 [connection signal="body_entered" from="HardTrigger" to="." method="_on_HardTrigger_body_entered"]
@@ -891,6 +898,7 @@ material/0 = SubResource( 13 )
 [connection signal="pressed" from="MainMenu/CenterContainer/GridContainer/ButtonResume" to="." method="_on_ButtonResume_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/GridContainer/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
 
+[editable path="Cube1m33"]
 [editable path="Cube1m9"]
 [editable path="Cube1m24"]
 [editable path="Cube1m13"]
